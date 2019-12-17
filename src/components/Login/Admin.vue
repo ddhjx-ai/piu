@@ -1,6 +1,6 @@
 <template>
   <div id="admin">
-    <div class='header'>
+    <!-- <div class='header'>
       <p>工作台</p>
       <ul>
         <li
@@ -15,7 +15,7 @@
         <span class='nowtime'>2019-12-13</span>
         <img src='../../assets/images/close.png' alt />
       </div>
-    </div>
+    </div> -->
 
     <el-container>
       <el-aside width="220px">
@@ -34,9 +34,9 @@
 
       <el-main>
         <p class="title">角色信息</p>
-        <el-form label-width="120px">
+        <el-form label-width="120px" :model="userForm">
           <el-form-item label="用户名:">
-            <el-input></el-input>
+            <el-input v-model="userForm.name"></el-input>
           </el-form-item>
           <el-form-item label="角色:">
             <el-select v-model="value" placeholder="默认分组">
@@ -48,14 +48,14 @@
             </el-select>
           </el-form-item>
           <el-form-item label="密码:">
-            <el-input type="password"></el-input>
+            <el-input type="password" v-model="userForm.password"></el-input>
           </el-form-item>
           <el-form-item label="确认密码:">
-            <el-input type="password"></el-input>
+            <el-input type="password" v-model="userForm.psdagain"></el-input>
           </el-form-item>
           <el-form-item label="备注:">
             <el-input type="textarea"
-              :rows="2" v-model="textarea" maxlength="100">
+              :rows="2" maxlength="100" v-model="userForm.remarks">
             </el-input>
           </el-form-item>
           <el-form-item label="菜单权限:">
@@ -90,6 +90,12 @@ export default {
         {value: 'admin3'}
       ],
       value: '',
+      userForm: {
+        name: '',
+        password: '',
+        psdagain: '',
+        remarks: ''
+      },
 
       checkAll: false,
       checkedCities: ['上海', '北京'],
@@ -120,6 +126,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #3a3e43;
+  position: relative;
 }
 div.header {
   height: 50px;
@@ -197,9 +204,10 @@ div.header > div > img {
   left: 0;
   right: 0;
   margin: auto;
-  top: 52px;
+  top: 0px;
   background-color: #1d1f22;
   padding: 8px;
+  height: 100%;
   .el-aside{
     height: 100%;
     margin-right: 8px;
@@ -311,7 +319,6 @@ div.header > div > img {
               overflow-y:hidden;
             }
           }
-          
         }
       }
     }

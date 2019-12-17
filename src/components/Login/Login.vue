@@ -76,7 +76,8 @@ export default {
   methods: {
     // 登录事件
     login () {
-      this.$refs.loginForm.validate(valid => {})
+      // this.$refs.loginForm.validate(valid => {})
+      this.$router.push('/WorkIndex')
     }
   }
 }

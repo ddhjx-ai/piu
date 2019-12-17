@@ -1,22 +1,5 @@
 <template>
   <div id="gatewayInto">
-    <div class='header'>
-      <p>工作台</p>
-      <ul>
-        <li
-          @click='clickHandle(i)'
-          :class="i == index? 'show' : '' "
-          v-for='(item,i) in headerList'
-          :key='i'
-        >{{item}}</li>
-      </ul>
-      <div>
-        <span class='username'>admin</span>
-        <span class='nowtime'>2019-12-13</span>
-        <img src='../../assets/images/close.png' alt />
-      </div>
-    </div>
-
     <el-form :inline="true" :model="search_from" class="form-inline">
       <el-form-item label="接入项目名称:">
         <el-input placeholder="请输入项目名称" v-model="search_from.name"></el-input>
@@ -94,8 +77,6 @@ export default {
   data () {
     return {
       active: 0,
-      index: 0,
-      headerList: ['设备管理', '实时视频', '视频回放', '网关接入', '用户管理'],
 
       test_list: [
         {
@@ -123,9 +104,6 @@ export default {
   methods: {
     changeActive (num) {
       this.active = num
-    },
-    clickHandle (i) {
-      this.index = i
     }
   },
   components: {
@@ -212,7 +190,7 @@ div.header > div > img {
 
 .form-inline {
   padding-left: 20px;
-  margin-top: 10px;
+  // margin-top: 10px;
   display: flex;
   justify-items: center;
   justify-content: flex-start;

@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <div class='header'>
-      <p>工作台</p>
+    <div class='header' v-if="$route.path != '/' && $route.path != '/WorkIndex'">
+      <router-link to="/WorkIndex" tag="p">工作台</router-link>
       <ul>
-        <li
-          @click='clickHandle(i)'
-          :class="i == index? 'show' : '' "
+        <router-link
           v-for='(item,i) in headerList'
           :key='i'
-        >{{item}}</li>
+          :to='item.path'
+          tag="li"
+        >{{item.item}}</router-link>
       </ul>
       <div>
         <span class='username'>admin</span>
-        <span class='nowtime'>2019-12-13</span>
+        <span class='nowtime'>{{getTime}}</span>
         <img src='./assets/images/close.png' alt />
       </div>
     </div>
@@ -25,8 +25,26 @@ export default {
   name: 'App',
   data () {
     return {
-      index: 0,
-      headerList: ['设备管理', '实时视频', '视频回放', '网关接入', '用户管理']
+      // headerList: ['设备管理', '实时视频', '视频回放', '网关接入', '用户管理'],
+      headerList: [
+        {item: '设备管理', path: '/WorkManage'},
+        {item: '实时视频', path: '/Videolive'},
+        {item: '视频回放', path: '/VideoPlayback'},
+        {item: '网关接入', path: '/GatewayInto'},
+        {item: '用户管理', path: '/Admin'}
+      ]
+    }
+  },
+  methods: {
+  },
+  computed: {
+    getTime () {
+      let time = new Date()
+      let year = time.getFullYear().toString().padStart('0', 2)
+      let month = (time.getMonth() + 1).toString().padStart('0', 2)
+      let day = time.getDate().toString().padStart('0', 2)
+
+      return `${year}-${month}-${day}`
     }
   }
 }
@@ -44,6 +62,7 @@ export default {
   border-bottom: 2px #00b0ff solid;
 }
 div.header > p {
+  cursor: pointer;
   font-size: 20px;
   text-align: center;
   float: left;
@@ -72,6 +91,7 @@ div.header > ul > li {
   text-align: center;
   font-weight: bold;
   position: relative;
+  user-select: none;
 }
 div.header > ul > li:hover{
   color: #fff;

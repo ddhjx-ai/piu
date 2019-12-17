@@ -5,4 +5,5 @@ html,body{
   padding: 0;
   font-family: Microsoft YaHei;
   font-size: 14px;
+  user-select: none;
 }

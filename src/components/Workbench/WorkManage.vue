@@ -1,22 +1,5 @@
 <template>
   <div id='workManage'>
-    <div class='header'>
-      <p>工作台</p>
-      <ul>
-        <li
-          @click='clickHandle(i)'
-          :class="i == index? 'show' : '' "
-          v-for='(item,i) in headerList'
-          :key='i'
-        >{{item}}</li>
-      </ul>
-      <div>
-        <span class='username'>admin</span>
-        <span class='nowtime'>2019-12-13</span>
-        <img src='../../assets/images/close.png' alt />
-      </div>
-    </div>
-
     <div class='main'>
       <div>
         <ul>
@@ -104,8 +87,6 @@ export default {
   name: 'WorkManage',
   data () {
     return {
-      headerList: ['设备管理', '实时视频', '视频回放', '网关接入', '用户管理'],
-      index: 0,
       checked: true,
       active: 0,
       test_data: [
@@ -193,10 +174,6 @@ export default {
     }
   },
   methods: {
-    clickHandle (i) {
-      this.index = i
-    },
-
     outSet () {
       console.log(12)
     },
