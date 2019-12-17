@@ -1,7 +1,7 @@
  <template>
   <div id="setout">
     <p class="title">
-      <span>设备导出</span> 
+      <span>设备导出</span>
       <i class="el-icon-close" @click="close"></i>
     </p>
     <div class="container">
@@ -12,7 +12,7 @@
       <div class="filePath">
         <label for>文件路径:</label>
         <input type="text" />
-        <i class="el-icon-folder-opened"></i>        
+        <i class="el-icon-folder-opened"></i>
       </div>
       <div class="buttons_2">
         <el-button type="primary">导出</el-button>
@@ -24,18 +24,16 @@
 
 <script>
 export default {
-  name: "Setout",
-  data(){
-    return {
-
-    }
+  name: 'Setout',
+  data () {
+    return {}
   },
-  methods:{
-    close(){
-      this.$emit('changeActive',0)
+  methods: {
+    close () {
+      this.$emit('changeActive', 0)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -55,7 +53,7 @@ export default {
     height: 35px;
     width: 100%;
     background-color: #3a3e43;
-    padding:0 10px;
+    padding: 0 10px;
     margin: 0;
     box-sizing: border-box;
     color: #ccc;
@@ -88,7 +86,7 @@ export default {
         background-color: #42464c;
         border-color: #42464c;
         color: #ffffff;
-         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 1)
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 1);
       }
     }
     .filePath {
@@ -97,11 +95,11 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      label{
+      label {
         font-size: 14px;
         color: #ccc;
       }
-      input{
+      input {
         height: 25px;
         width: 260px;
         text-indent: 10px;
@@ -110,27 +108,26 @@ export default {
         margin-left: 10px;
         color: #fff;
         background-color: #1f2124;
-        outline:0;
+        outline: 0;
         box-shadow: 0 1px 1px 0 #666;
       }
-      .el-icon-folder-opened{
+      .el-icon-folder-opened {
         color: #f2d06d;
         margin-left: -20px;
         cursor: pointer;
       }
-      
     }
-    .buttons_2{
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 50px;
-        button{
-          width: 70px;
-          height: 25px;
-          padding: 0;
-          border-radius: 2px;
-          font-size: 13px;
-        }
+    .buttons_2 {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 50px;
+      button {
+        width: 70px;
+        height: 25px;
+        padding: 0;
+        border-radius: 2px;
+        font-size: 13px;
+      }
     }
   }
 }

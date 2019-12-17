@@ -42,24 +42,24 @@
 
 <script>
 export default {
-  name: "AddEquipment",
-  data() {
+  name: 'AddEquipment',
+  data () {
     return {
       form: {
-        name: "",
-        domain:'',
-        port:"",
-        groupName: "",
-        password: ""
+        name: '',
+        domain: '',
+        port: '',
+        groupName: '',
+        password: ''
       }
-    };
+    }
   },
   methods: {
-    close() {
-      this.$emit("changeActive", 0);
+    close () {
+      this.$emit('changeActive', 0)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

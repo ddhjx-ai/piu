@@ -32,8 +32,8 @@
 
 <script>
 export default {
-  name: "WorkIndex"
-};
+  name: 'WorkIndex'
+}
 </script>
 
 <style lang="" scoped>
@@ -106,5 +106,4 @@ main.main>ul>li>a{
   display: flex;
   align-items: center;
 }
-
 </style>

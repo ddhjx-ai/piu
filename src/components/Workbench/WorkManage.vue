@@ -1,42 +1,42 @@
 <template>
-  <div id="workManage">
-    <header class="header">
+  <div id='workManage'>
+    <div class='header'>
       <p>工作台</p>
       <ul>
         <li
-          @click="clickHandle(i)"
+          @click='clickHandle(i)'
           :class="i == index? 'show' : '' "
-          v-for="(item,i) in headerList"
-          :key="i"
+          v-for='(item,i) in headerList'
+          :key='i'
         >{{item}}</li>
       </ul>
       <div>
-        <span class="username">admin</span>
-        <span class="nowtime">2019-12-13</span>
-        <img src="../../assets/images/close.png" alt />
+        <span class='username'>admin</span>
+        <span class='nowtime'>2019-12-13</span>
+        <img src='../../assets/images/close.png' alt />
       </div>
-    </header>
+    </div>
 
-    <div class="main">
+    <div class='main'>
       <div>
         <ul>
           <li @click='active = 1'>
-            <i class="el-icon-search"></i>自动搜索
+            <i class='el-icon-search'></i>自动搜索
           </li>
           <li @click='active = 2'>
-            <i class="el-icon-plus"></i>添加设备
+            <i class='el-icon-plus'></i>添加设备
           </li>
           <li @click='active = 3'>
-            <i class="el-icon-folder-add"></i>添加分组
+            <i class='el-icon-folder-add'></i>添加分组
           </li>
           <li>
-            <i class="el-icon-delete"></i>删除
+            <i class='el-icon-delete'></i>删除
           </li>
           <li @click='active = 5'>
-            <i class="el-icon-upload2" ></i>导出
+            <i class='el-icon-upload2' ></i>导出
           </li>
           <li @click='active = 6'>
-            <i class="el-icon-download"></i>导入
+            <i class='el-icon-download'></i>导入
           </li>
         </ul>
         <div>
@@ -45,12 +45,12 @@
         </div>
       </div>
       <p>所有设备</p>
-      <table style="width:100%">
+      <table style='width:100%'>
         <thead>
           <tr>
             <th>
-              <span><input type="checkbox" v-model="checked" /></span>
-              <span>序号</span> 
+              <span><input type='checkbox' v-model='checked'/></span>
+              <span>序号</span>
             </th>
             <th>名称</th>
             <th>IP/域名</th>
@@ -64,9 +64,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item,i) in test_data" :key="i">
+          <tr v-for='(item,i) in test_data' :key='i'>
             <td>
-              <span><input type="checkbox" v-model="checked" /></span>
+              <span><input type='checkbox' v-model='checked' /></span>
               <span>{{i+1}}</span>
             </td>
             <td>{{item.test_name}}</td>
@@ -75,22 +75,22 @@
             <td>{{item.test_code ? item.test_code : 'N/A'}}</td>
             <td>{{item.test_prot}}</td>
             <td>{{item.test_ways ? item.test_ways : 'N/A'}}</td>
-            <td class="statu"> <span :class="item.test_statu ? 'now' : ''"></span> {{item.test_statu ? "在线" : '离线'}}</td>
+            <td class='statu'> <span :class="item.test_statu ? 'now' : ''"></span> {{item.test_statu ? '在线' : '离线'}}</td>
             <td>{{item.test_number ? item.test_number : 'N/A'}}</td>
             <td>
-              <el-button type="text" size="small">修改</el-button>
-              <el-button type="text" size="small">删除</el-button>
+              <el-button type='text' size='small'>修改</el-button>
+              <el-button type='text' size='small'>删除</el-button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <autoSearch v-if="active == 1" @changeActive="changeActive"/>
-    <addEquipment  v-if="active == 2" @changeActive="changeActive"/>
-    <addGroups v-if="active == 3" @changeActive='changeActive'/>
-    <setout v-if="active == 5" @changeActive="changeActive"/>
-    <setInsert v-if="active == 6" @changeActive="changeActive"/>
+    <autoSearch v-if='active == 1' @changeActive='changeActive'/>
+    <addEquipment  v-if='active == 2' @changeActive='changeActive'/>
+    <addGroups v-if='active == 3' @changeActive='changeActive'/>
+    <setout v-if='active == 5' @changeActive='changeActive'/>
+    <setInsert v-if='active == 6' @changeActive='changeActive'/>
   </div>
 </template>
 
@@ -101,140 +101,140 @@ import addGroups from '../Workcategory/AddGroups'
 import addEquipment from '../Workcategory/AddEquipment'
 import autoSearch from '../Workcategory/AutoSearch'
 export default {
-  name: "WorkManage",
-  data() {
+  name: 'WorkManage',
+  data () {
     return {
-      headerList: ["设备管理", "实时视频", "视频回放", "网关接入", "用户管理"],
+      headerList: ['设备管理', '实时视频', '视频回放', '网关接入', '用户管理'],
       index: 0,
       checked: true,
-      active:0,
+      active: 0,
       test_data: [
         {
-          test_name: "A栋大3楼1001",
-          test_ip: "10.0.0.111",
-          test_type: "",
-          test_code: "",
-          test_prot: "22222",
-          test_ways: "",
+          test_name: 'A栋大3楼1001',
+          test_ip: '10.0.0.111',
+          test_type: '',
+          test_code: '',
+          test_prot: '22222',
+          test_ways: '',
           test_statu: true,
-          test_number: ""
+          test_number: ''
         },
         {
-          test_name: "A栋大3楼1001",
-          test_ip: "10.0.0.111",
-          test_type: "",
-          test_code: "",
-          test_prot: "22222",
-          test_ways: "",
+          test_name: 'A栋大3楼1001',
+          test_ip: '10.0.0.111',
+          test_type: '',
+          test_code: '',
+          test_prot: '22222',
+          test_ways: '',
           test_statu: true,
-          test_number: ""
+          test_number: ''
         },
         {
-          test_name: "A栋大3楼1001",
-          test_ip: "10.0.0.111",
-          test_type: "",
-          test_code: "",
-          test_prot: "22222",
-          test_ways: "",
+          test_name: 'A栋大3楼1001',
+          test_ip: '10.0.0.111',
+          test_type: '',
+          test_code: '',
+          test_prot: '22222',
+          test_ways: '',
           test_statu: false,
-          test_number: ""
+          test_number: ''
         },
         {
-          test_name: "A栋大3楼1001",
-          test_ip: "10.0.0.111",
-          test_type: "",
-          test_code: "",
-          test_prot: "22222",
-          test_ways: "",
+          test_name: 'A栋大3楼1001',
+          test_ip: '10.0.0.111',
+          test_type: '',
+          test_code: '',
+          test_prot: '22222',
+          test_ways: '',
           test_statu: false,
-          test_number: ""
+          test_number: ''
         },
         {
-          test_name: "A栋大3楼1001",
-          test_ip: "10.0.0.111",
-          test_type: "",
-          test_code: "",
-          test_prot: "22222",
-          test_ways: "",
+          test_name: 'A栋大3楼1001',
+          test_ip: '10.0.0.111',
+          test_type: '',
+          test_code: '',
+          test_prot: '22222',
+          test_ways: '',
           test_statu: false,
-          test_number: ""
+          test_number: ''
         },
         {
-          test_name: "A栋大3楼1001",
-          test_ip: "10.0.0.111",
-          test_type: "",
-          test_code: "",
-          test_prot: "22222",
-          test_ways: "",
+          test_name: 'A栋大3楼1001',
+          test_ip: '10.0.0.111',
+          test_type: '',
+          test_code: '',
+          test_prot: '22222',
+          test_ways: '',
           test_statu: false,
-          test_number: ""
+          test_number: ''
         },
         {
-          test_name: "A栋大3楼1001",
-          test_ip: "10.0.0.111",
-          test_type: "",
-          test_code: "",
-          test_prot: "22222",
-          test_ways: "",
+          test_name: 'A栋大3楼1001',
+          test_ip: '10.0.0.111',
+          test_type: '',
+          test_code: '',
+          test_prot: '22222',
+          test_ways: '',
           test_statu: false,
-          test_number: ""
+          test_number: ''
         },
         {
-          test_name: "A栋大3楼1001",
-          test_ip: "10.0.0.111",
-          test_type: "",
-          test_code: "",
-          test_prot: "22222",
-          test_ways: "",
+          test_name: 'A栋大3楼1001',
+          test_ip: '10.0.0.111',
+          test_type: '',
+          test_code: '',
+          test_prot: '22222',
+          test_ways: '',
           test_statu: true,
-          test_number: ""
-        },
+          test_number: ''
+        }
       ]
-    };
+    }
   },
   methods: {
-    clickHandle(i) {
-      this.index = i;
+    clickHandle (i) {
+      this.index = i
     },
 
-    outSet(){
+    outSet () {
       console.log(12)
     },
 
-    changeActive(num){
+    changeActive (num) {
       this.active = num
     }
   },
-  computed:{
+  computed: {
     // 在线总数
-    onlinNum(){
+    onlinNum () {
       let onLineArr = this.test_data.filter(item => item.test_statu)
       return onLineArr.length
     }
   },
-  components:{
+  components: {
     setout,
     setInsert,
     addGroups,
     addEquipment,
     autoSearch
   }
-};
+}
 </script>
 
-<style lang="" scoped>
+<style lang='' scoped>
 #workManage {
   width: 100%;
   height: 100%;
   background-color: #3a3e43;
 }
-header.header {
+div.header {
   height: 50px;
   background-color: #3a3e43;
   position: relative;
   border-bottom: 2px #00b0ff solid;
 }
-header.header > p {
+div.header > p {
   font-size: 20px;
   text-align: center;
   float: left;
@@ -254,7 +254,7 @@ ul > li {
   list-style: none;
   cursor: pointer;
 }
-header.header > ul > li {
+div.header > ul > li {
   width: 120px;
   height: 50px;
   line-height: 50px;
@@ -264,11 +264,11 @@ header.header > ul > li {
   font-weight: bold;
   position: relative;
 }
-header.header > ul > li:hover{
+div.header > ul > li:hover{
   color: #fff;
 }
-header.header > ul > li.show::after {
-  content: "";
+div.header > ul > li.show::after {
+  content: '';
   position: absolute;
   bottom: -4px;
   left: 50%;
@@ -280,20 +280,20 @@ header.header > ul > li.show::after {
   border-bottom-width: 0;
   border-right-width: 0;
 }
-header.header > div {
+div.header > div {
   position: absolute;
   right: 0;
   top: 0;
   height: 50px;
   line-height: 50px;
 }
-header.header > div > span {
+div.header > div > span {
   color: rgba(229, 229, 229, 1);
   background-color: rgba(58, 62, 67, 1);
   font-size: 14px;
   margin-left: 30px;
 }
-header.header > div > img {
+div.header > div > img {
   vertical-align: middle;
   margin-left: 30px;
 }

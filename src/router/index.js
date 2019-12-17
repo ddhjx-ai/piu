@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/Login/HelloWorld'
+import Login from '@/components/Login/Login'
+import Admin from '@/components/Login/Admin'
 import WorkIndex from '@/components/Workbench/WorkIndex'
 import WorkManage from '@/components/Workbench/WorkManage'
+import GatewayInto from '@/components/Workbench/GatewayInto'
 
 Vue.use(Router)
 
@@ -10,8 +12,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/Admin',
+      name: 'Admin',
+      component: Admin
     },
     {
       path: '/WorkIndex',
@@ -22,6 +29,11 @@ export default new Router({
       path: '/WorkManage',
       name: 'WorkManage',
       component: WorkManage
+    },
+    {
+      path: '/GatewayInto',
+      name: 'GatewayInto',
+      component: GatewayInto
     }
   ]
 })

@@ -1,41 +1,41 @@
 <template>
-  <div id="hello" :style="note">
-    <h3 class="title">基于LTE专用网络的视频传输</h3>
+  <div id='hello' :style='note'>
+    <h3 class='title'>基于LTE专用网络的视频传输</h3>
     <!-- 表单区域 -->
-    <el-form class="login_form" ref="loginForm" :model="form" :rules="rules" label-width="0px">
+    <el-form class='login_form' ref='loginForm' :model='form' :rules='rules' label-width='0px'>
       <!-- 用户名 -->
-      <el-form-item prop="username">
-        <el-input placeholder="账户" clearable prefix-icon="el-icon-s-custom" v-model="form.username"></el-input>
+      <el-form-item prop='username'>
+        <el-input placeholder='账户' clearable prefix-icon='el-icon-s-custom' v-model='form.username'></el-input>
       </el-form-item>
       <!-- 密码 -->
-      <el-form-item prop="password">
+      <el-form-item prop='password'>
         <el-input
-          placeholder="密码"
+          placeholder='密码'
           clearable
           show-password
-          prefix-icon="el-icon-lock"
-          v-model="form.password"
+          prefix-icon='el-icon-lock'
+          v-model='form.password'
         ></el-input>
       </el-form-item>
 
-      <div class="checkbox">
-        <el-checkbox v-model="checked1">记住密码</el-checkbox>
-        <el-checkbox v-model="checked2">自动登陆</el-checkbox>
+      <div class='checkbox'>
+        <el-checkbox v-model='checked1'>记住密码</el-checkbox>
+        <el-checkbox v-model='checked2'>自动登陆</el-checkbox>
       </div>
       <!-- 登录按钮 -->
       <el-form-item>
-        <el-button type="primary" @click="login" style="width:100%">登陆</el-button>
+        <el-button type='primary' @click='login' style='width:100%'>登陆</el-button>
       </el-form-item>
 
-      <div class="a-link">
-        <a href="#">忘记密码?</a>
+      <div class='a-link'>
+        <a href='#'>忘记密码?</a>
       </div>
     </el-form>
-    <div class="footer">
+    <div class='footer'>
       <div>
-        <a href="#">帮助</a>
-        <a href="#">隐私</a>
-        <a href="#">条款</a>
+        <a href='#'>帮助</a>
+        <a href='#'>隐私</a>
+        <a href='#'>条款</a>
       </div>
       <p>Copyright ©️ 2019 微品致远产品部出品</p>
     </div>
@@ -44,47 +44,45 @@
 
 <script>
 export default {
-  name: "HelloWorld",
-  data() {
+  name: 'HelloWorld',
+  data () {
     return {
       // 表单数据
       form: {
-        username: "",
-        password: ""
+        username: '',
+        password: ''
       },
       checked1: false,
       checked2: false,
       // 表单验证
       rules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" },
-          { min: 2, max: 6, message: "长度在 2 到 6 个字符", trigger: "blur" }
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 2, max: 6, message: '长度在 2 到 6 个字符', trigger: 'blur' }
         ],
         password: [
-          { required: true, message: "请输入密码", trigger: "blur" },
-          { min: 6, max: 18, message: "长度在 6 到 18 个字符", trigger: "blur" }
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
         ]
       },
       note: {
         backgroundImage:
-          "url(" + require("../../assets/images/helloWorld-bg.png") + ")",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "100% 100%"
+          'url(' + require('../../assets/images/helloWorld-bg.png') + ')',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '100% 100%'
       }
-    };
+    }
   },
   methods: {
     // 登录事件
-    login(){
-      this.$refs.loginForm.validate(valid => {
-
-      })
+    login () {
+      this.$refs.loginForm.validate(valid => {})
     }
   }
-};
+}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped lang='less'>
 #hello {
   height: 100%;
