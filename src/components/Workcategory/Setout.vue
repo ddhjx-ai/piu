@@ -12,6 +12,7 @@
       <div class="filePath">
         <label for>文件路径:</label>
         <input type="text" />
+        <input type="file" title="" @change="getFilePath" ref='file'/>
         <i class="el-icon-folder-opened"></i>
       </div>
       <div class="buttons_2">
@@ -29,8 +30,14 @@ export default {
     return {}
   },
   methods: {
-    close () {
+    close() {
       this.$emit('changeActive', 0)
+    },
+
+    getFilePath() {
+      console.log(this.$refs)
+      let file = this.$refs.file.files[0]
+      console.log(URL.createObjectURL(file))
     }
   }
 }
@@ -83,10 +90,14 @@ export default {
         padding: 0;
         line-height: 30px;
         border-radius: 2px;
-        background-color: #42464c;
-        border-color: #42464c;
-        color: #ffffff;
+        background-color: #484d52;
+        border-color: #23272a;
+        color: #ccc;
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 1);
+        &:active{
+          background-color: #23272a;
+          color: #fff;
+        }
       }
     }
     .filePath {
@@ -110,6 +121,15 @@ export default {
         background-color: #1f2124;
         outline: 0;
         box-shadow: 0 1px 1px 0 #666;
+        &[type='file']{
+          height: 25px;
+          width: 30px;
+          position: absolute;
+          overflow: hidden;
+          left: 347px;
+          opacity: 0;
+          cursor: pointer;
+        }
       }
       .el-icon-folder-opened {
         color: #f2d06d;

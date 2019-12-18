@@ -7,11 +7,16 @@
 
     <el-form :model="form" label-width="80px">
       <el-form-item label="设备名称:">
-        <el-input clearable  v-model="form.name"></el-input>
+        <el-input clearable v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item label="添加方式:">
-        <el-select placeholder="IP/域名">
-          <el-option></el-option>
+        <el-select v-model="hostValue" placeholder="IP/域名">
+          <el-option
+            v-for="item in hostOptions"
+            :key="item.value"
+            :label="item.value"
+            :value="item.value"
+          ></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="IP/域名:">
@@ -21,8 +26,13 @@
         <el-input v-model="form.port"></el-input>
       </el-form-item>
       <el-form-item label="组名:">
-        <el-select  placeholder="默认分组">
-          <el-option></el-option>
+        <el-select v-model="groupValue" placeholder="默认分组">
+          <el-option
+            v-for="item in groupOptions"
+            :key="item.value"
+            :label="item.value"
+            :value="item.value"
+          ></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="用户名:">
@@ -43,7 +53,7 @@
 <script>
 export default {
   name: 'AddEquipment',
-  data () {
+  data() {
     return {
       form: {
         name: '',
@@ -51,11 +61,21 @@ export default {
         port: '',
         groupName: '',
         password: ''
-      }
+      },
+      hostOptions: [
+        {value: '10.2.3.444'},
+        {value: '10.2.3.333'}
+      ],
+      hostValue: '',
+      groupOptions: [
+        {value: 'admin1'},
+        {value: 'admin2'}
+      ],
+      groupValue: ''
     }
   },
   methods: {
-    close () {
+    close() {
       this.$emit('changeActive', 0)
     }
   }
@@ -120,7 +140,7 @@ export default {
             color: #eee;
           }
         }
-        .el-select{
+        .el-select {
           width: 100%;
         }
       }

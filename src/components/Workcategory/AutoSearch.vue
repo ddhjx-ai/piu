@@ -74,22 +74,22 @@
 
 <script>
 export default {
-  name: "AutoSearch",
+  name: 'AutoSearch',
   data() {
     return {
       form: {
-        startIp: "",
-        endIp: ""
+        startIp: '',
+        endIp: ''
       },
       checked: true
-    };
+    }
   },
   methods: {
     close() {
-      this.$emit("changeActive", 0);
+      this.$emit('changeActive', 0)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

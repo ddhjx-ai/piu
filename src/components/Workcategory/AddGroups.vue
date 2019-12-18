@@ -19,24 +19,28 @@
 
 <script>
 export default {
-  name: "AddGroups",
-  data() {
+  name: 'AddGroups',
+  data () {
     return {
       // 表单数据
       form: {
-        groupName: "",
+        groupName: ''
       },
-      rules:{
-        groupName:{ required: true, message: "请输入分组名称", trigger: "blur" }
+      rules: {
+        groupName: {
+          required: true,
+          message: '请输入分组名称',
+          trigger: 'blur'
+        }
       }
-    };
+    }
   },
   methods: {
-    close() {
-      this.$emit("changeActive", 0);
+    close () {
+      this.$emit('changeActive', 0)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -75,16 +79,16 @@ export default {
       }
     }
   }
-  .el-form{
+  .el-form {
     margin-top: 40px;
-    .groupName{
+    .groupName {
       padding: 0 30px;
-      /deep/.el-form-item__label{
+      /deep/.el-form-item__label {
         color: #ccc;
       }
-      /deep/.el-form-item__content{
-        .el-input{
-          input.el-input__inner{
+      /deep/.el-form-item__content {
+        .el-input {
+          input.el-input__inner {
             height: 30px;
             line-height: 30px;
             border-radius: 2px;
@@ -97,12 +101,12 @@ export default {
         }
       }
     }
-    .buttons{
+    .buttons {
       margin-top: 40px;
       padding-right: 10px;
       display: flex;
       justify-content: flex-end;
-      .el-button{
+      .el-button {
         height: 26px;
         width: 72px;
         padding: 0;

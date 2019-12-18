@@ -1,23 +1,6 @@
 <template>
   <div id="admin">
-    <!-- <div class='header'>
-      <p>工作台</p>
-      <ul>
-        <li
-          @click='clickHandle(i)'
-          :class="i == index? 'show' : '' "
-          v-for='(item,i) in headerList'
-          :key='i'
-        >{{item}}</li>
-      </ul>
-      <div>
-        <span class='username'>admin</span>
-        <span class='nowtime'>2019-12-13</span>
-        <img src='../../assets/images/close.png' alt />
-      </div>
-    </div> -->
-
-    <el-container>
+    <el-container class="container">
       <el-aside width="220px">
         <p class="title">用户/角色</p>
         <div class="userSet">
@@ -27,8 +10,12 @@
           <i class="el-icon-search"></i>
         </div>
         <el-input v-model="userSearch" placeholder="搜索..."></el-input>
-        <div class="admin">
-          <i class="el-icon-caret-right"></i>
+        <div class="users">
+          <el-tree
+            :data="users"
+            @node-click="handleNodeClick"
+            :render-content="renderContent"
+          ></el-tree>
         </div>
       </el-aside>
 
@@ -40,11 +27,12 @@
           </el-form-item>
           <el-form-item label="角色:">
             <el-select v-model="value" placeholder="默认分组">
-              <el-option v-for="item in options"
+              <el-option
+                v-for="item in options"
                 :key="item.value"
                 :label="item.value"
-                :value="item.value">
-              </el-option>
+                :value="item.value"
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="密码:">
@@ -54,15 +42,27 @@
             <el-input type="password" v-model="userForm.psdagain"></el-input>
           </el-form-item>
           <el-form-item label="备注:">
-            <el-input type="textarea"
-              :rows="2" maxlength="100" v-model="userForm.remarks">
-            </el-input>
+            <el-input type="textarea" :rows="2" maxlength="100" v-model="userForm.remarks"></el-input>
           </el-form-item>
           <el-form-item label="菜单权限:">
-            <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+            <el-checkbox
+              :indeterminate="isIndeterminate"
+              v-model="checkAll"
+              @change="handleCheckAllChange"
+            >全选</el-checkbox>
             <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
               <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
             </el-checkbox-group>
+          </el-form-item>
+
+          <el-form-item label="通道权限:" >
+            <el-container class="passageway">
+              <el-aside width="150px">
+              </el-aside>
+
+              <el-main>
+              </el-main>
+            </el-container>
           </el-form-item>
 
           <el-form-item class="buttons">
@@ -78,17 +78,13 @@
 <script>
 export default {
   name: 'Admin',
-  data () {
+  data() {
     return {
       textarea: '',
       userSearch: '',
       index: 0,
       headerList: ['设备管理', '实时视频', '视频回放', '网关接入', '用户管理'],
-      options: [
-        {value: 'admin1'},
-        {value: 'admin2'},
-        {value: 'admin3'}
-      ],
+      options: [{ value: 'admin1' }, { value: 'admin2' }, { value: 'admin3' }],
       value: '',
       userForm: {
         name: '',
@@ -97,6 +93,26 @@ export default {
         remarks: ''
       },
 
+      users: [
+        {
+          id: 1,
+          name: 'admin',
+          type: 0,
+          children: [
+            {
+              id: 2,
+              type: 1,
+              name: 'admin1'
+            },
+            {
+              id: 2,
+              type: 1,
+              name: 'admin2'
+            }
+          ]
+        }
+      ],
+
       checkAll: false,
       checkedCities: ['上海', '北京'],
       cities: ['设备管理', '实时视频', '视频回放', '用户管理'],
@@ -104,18 +120,33 @@ export default {
     }
   },
   methods: {
-    clickHandle (i) {
+    clickHandle(i) {
       this.index = i
     },
 
-    handleCheckAllChange (val) {
+    handleCheckAllChange(val) {
       this.checkedCities = val ? this.cities : []
       this.isIndeterminate = false
     },
-    handleCheckedCitiesChange (value) {
+    handleCheckedCitiesChange(value) {
       let checkedCount = value.length
       this.checkAll = checkedCount === this.cities.length
-      this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length
+      this.isIndeterminate =
+        checkedCount > 0 && checkedCount < this.cities.length
+    },
+
+    handleNodeClick(data) {
+      console.log(data)
+    },
+
+    renderContent(h, { node, data, store }) {
+      console.log(data)
+      return (
+        <div>
+          {data.type === 0 ? <i class="el-icon-user-solid"></i> : <i class="el-icon-user"></i>}
+          {data.name}
+        </div>
+      )
     }
   }
 }
@@ -128,96 +159,24 @@ export default {
   background-color: #3a3e43;
   position: relative;
 }
-div.header {
-  height: 50px;
-  background-color: #3a3e43;
-  position: relative;
-  border-bottom: 2px #00b0ff solid;
-}
-div.header > p {
-  font-size: 20px;
-  text-align: center;
-  float: left;
-  font-weight: bold;
-  width: 120px;
-  height: 50px;
-  line-height: 50px;
-  color: rgba(229, 229, 229, 1);
-  margin: 0;
-}
-ul {
-  margin: 0;
-  padding: 0;
-}
-ul > li {
-  float: left;
-  list-style: none;
-  cursor: pointer;
-}
-div.header > ul > li {
-  width: 120px;
-  height: 50px;
-  line-height: 50px;
-  color: rgba(229, 229, 229, 1);
-  font-size: 17px;
-  text-align: center;
-  font-weight: bold;
-  position: relative;
-}
-div.header > ul > li:hover{
-  color: #fff;
-}
-div.header > ul > li.show::after {
-  content: '';
+.el-container.container {
   position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  background-color: #3a3e43;
-  width: 5px;
-  height: 5px;
-  border: 2px #00b0ff solid;
-  border-bottom-width: 0;
-  border-right-width: 0;
-}
-div.header > div {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 50px;
-  line-height: 50px;
-}
-div.header > div > span {
-  color: rgba(229, 229, 229, 1);
-  background-color: rgba(58, 62, 67, 1);
-  font-size: 14px;
-  margin-left: 30px;
-}
-div.header > div > img {
-  vertical-align: middle;
-  margin-left: 30px;
-}
-
-.el-container{
-  position: absolute;
-  bottom: 0;
+  // bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
   top: 0px;
   background-color: #1d1f22;
   padding: 8px;
-  height: 100%;
-  .el-aside{
-    height: 100%;
+  .el-aside {
     margin-right: 8px;
     background-color: #2b2f33;
-    .userSet{
+    .userSet {
       height: 32px;
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      .el-button{
+      .el-button {
         height: 24px;
         padding: 0 5px;
         font-size: 12px;
@@ -225,33 +184,52 @@ div.header > div > img {
         border: 1px solid #aaa;
         margin-left: 5px;
       }
-      .el-icon-search{
+      .el-icon-search {
         color: #aaa;
         font-size: 15px;
         margin-left: 20px;
         cursor: pointer;
-        &:hover{
+        &:hover {
           color: #fff;
         }
       }
     }
-    .el-input{
+    .el-input {
       height: 26px;
       padding: 0 3px;
       box-sizing: border-box;
-      /deep/.el-input__inner{
+      margin: 3px 0;
+      /deep/.el-input__inner {
         height: 26px;
         outline: 0;
         background-color: #000;
-        border-radius: 2px;
+        border-radius: 3px;
         border: 0;
         line-height: 26px;
         color: #fff;
       }
     }
+    .users{
+      /deep/.el-tree-node__content{
+        background-color: #595f69;
+        color: #f5f5f5;
+      }
+      /deep/.el-tree-node__children{
+        /deep/.el-tree-node__content{
+          background-color: #333;
+          &:hover{
+            background-color: #555;
+          }
+        }
+      }
+      /deep/.el-tree-node__expand-icon.expanded{
+        color: #40c4ff;
+      }
+    }
   }
-  .el-main{
+  .el-main {
     padding: 0;
+    height: auto;
     background-color: #2b2f33;
     .el-form {
       margin-top: 10px;
@@ -276,18 +254,18 @@ div.header > div > img {
         padding: 0px 10px;
         margin-bottom: 10px;
         &:nth-of-type(1),
-        &:nth-of-type(2){
+        &:nth-of-type(2) {
           display: inline-block;
         }
         &:nth-of-type(1),
         &:nth-of-type(2),
         &:nth-of-type(3),
-        &:nth-of-type(4){
+        &:nth-of-type(4) {
           width: 360px;
         }
         /deep/.el-form-item__content {
           .el-input {
-            ::placeholder{
+            ::placeholder {
               font-size: 12px;
               color: #aaa;
             }
@@ -302,11 +280,11 @@ div.header > div > img {
               color: #eee;
             }
           }
-          .el-select{
+          .el-select {
             width: 100%;
           }
-          .el-textarea{
-            .el-textarea__inner{
+          .el-textarea {
+            .el-textarea__inner {
               height: 48px;
               line-height: 1;
               border-radius: 2px;
@@ -316,14 +294,17 @@ div.header > div > img {
               box-shadow: 0 1px 1px 0 #666;
               color: #eee;
               resize: none;
-              overflow-y:hidden;
+              overflow-y: hidden;
             }
           }
+        }
+        .el-checkbox{
+          color: #ccc;
         }
       }
     }
   }
-  p.title{
+  p.title {
     margin: 0;
     height: 40px;
     line-height: 40px;
@@ -332,5 +313,10 @@ div.header > div > img {
     color: #ccc;
     background-color: #3a3e43;
   }
+}
+.passageway{
+  width: 500px;
+  height: 540px;
+  border: 1px solid #666;
 }
 </style>

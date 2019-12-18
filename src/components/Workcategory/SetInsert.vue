@@ -1,7 +1,7 @@
  <template>
   <div id="setInsert">
     <p class="title">
-      <span>设备导入</span> 
+      <span>设备导入</span>
       <i class="el-icon-close" @click="close"></i>
     </p>
     <div class="container">
@@ -12,7 +12,8 @@
       <div class="filePath">
         <label for>文件路径:</label>
         <input type="text" />
-        <i class="el-icon-folder-opened"></i>        
+        <input type="file" title="">
+        <i class="el-icon-folder-opened"></i>
       </div>
       <div class="buttons_2">
         <el-button type="primary">导入</el-button>
@@ -24,18 +25,16 @@
 
 <script>
 export default {
-  name: "Setout",
-  data(){
-    return {
-      
-    }
+  name: 'Setout',
+  data() {
+    return {}
   },
-  methods:{
-    close(){
-      this.$emit('changeActive',0)
+  methods: {
+    close() {
+      this.$emit('changeActive', 0)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -55,7 +54,7 @@ export default {
     height: 35px;
     width: 100%;
     background-color: #3a3e43;
-    padding:0 10px;
+    padding: 0 10px;
     margin: 0;
     box-sizing: border-box;
     color: #ccc;
@@ -78,7 +77,6 @@ export default {
     padding: 10px;
     box-sizing: border-box;
     .buttons_1 {
-      
       button {
         font-size: 13px;
         width: 145px;
@@ -86,10 +84,14 @@ export default {
         padding: 0;
         line-height: 30px;
         border-radius: 2px;
-        background-color: #42464c;
-        border-color: #42464c;
-        color: #ffffff;
-         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 1)
+        background-color: #484d52;
+        border-color: #23272a;
+        color: #ccc;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 1);
+        &:active{
+          background-color: #23272a;
+          color: #fff;
+        }
       }
     }
     .filePath {
@@ -98,11 +100,11 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      label{
+      label {
         font-size: 14px;
         color: #ccc;
       }
-      input{
+      input {
         height: 25px;
         width: 260px;
         text-indent: 10px;
@@ -111,27 +113,35 @@ export default {
         margin-left: 10px;
         color: #fff;
         background-color: #1f2124;
-        outline:0;
+        outline: 0;
         box-shadow: 0 1px 1px 0 #666;
+        &[type='file']{
+          height: 25px;
+          width: 30px;
+          position: absolute;
+          overflow: hidden;
+          left: 347px;
+          opacity: 0;
+          cursor: pointer;
+        }
       }
-      .el-icon-folder-opened{
+      .el-icon-folder-opened {
         color: #f2d06d;
         margin-left: -20px;
         cursor: pointer;
       }
-      
     }
-    .buttons_2{
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 50px;
-        button{
-          width: 70px;
-          height: 25px;
-          padding: 0;
-          border-radius: 2px;
-          font-size: 13px;
-        }
+    .buttons_2 {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 50px;
+      button {
+        width: 70px;
+        height: 25px;
+        padding: 0;
+        border-radius: 2px;
+        font-size: 13px;
+      }
     }
   }
 }
