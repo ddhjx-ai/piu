@@ -11,11 +11,7 @@
         </div>
         <el-input v-model="userSearch" placeholder="搜索..."></el-input>
         <div class="users">
-          <el-tree
-            :data="users"
-            @node-click="handleNodeClick"
-            :render-content="renderContent"
-          ></el-tree>
+          <el-tree :data="users" @node-click="handleNodeClick" :render-content="renderContent"></el-tree>
         </div>
       </el-aside>
 
@@ -55,12 +51,23 @@
             </el-checkbox-group>
           </el-form-item>
 
-          <el-form-item label="通道权限:" >
+          <el-form-item label="通道权限:">
             <el-container class="passageway">
               <el-aside width="150px">
+                <ul>
+                  <li>预览</li>
+                  <li>回放</li>
+                  <li>导出</li>
+                  <li>云台</li>
+                  <li>电子聚焦</li>
+                </ul>
               </el-aside>
 
               <el-main>
+                <el-input placeholder="搜索...">
+                  <i slot="suffix" class="el-icon-search"></i>
+                </el-input>
+                <el-tree show-checkbox :data="users" @node-click="handleNodeClick" :render-content="renderContent"></el-tree>
               </el-main>
             </el-container>
           </el-form-item>
@@ -143,7 +150,11 @@ export default {
       console.log(data)
       return (
         <div>
-          {data.type === 0 ? <i class="el-icon-user-solid"></i> : <i class="el-icon-user"></i>}
+          {data.type === 0 ? (
+            <i class="el-icon-user-solid"></i>
+          ) : (
+            <i class="el-icon-user"></i>
+          )}
           {data.name}
         </div>
       )
@@ -209,20 +220,20 @@ export default {
         color: #fff;
       }
     }
-    .users{
-      /deep/.el-tree-node__content{
+    .users {
+      /deep/.el-tree-node__content {
         background-color: #595f69;
         color: #f5f5f5;
       }
-      /deep/.el-tree-node__children{
-        /deep/.el-tree-node__content{
+      /deep/.el-tree-node__children {
+        /deep/.el-tree-node__content {
           background-color: #333;
-          &:hover{
+          &:hover {
             background-color: #555;
           }
         }
       }
-      /deep/.el-tree-node__expand-icon.expanded{
+      /deep/.el-tree-node__expand-icon.expanded {
         color: #40c4ff;
       }
     }
@@ -298,7 +309,7 @@ export default {
             }
           }
         }
-        .el-checkbox{
+        .el-checkbox {
           color: #ccc;
         }
       }
@@ -314,9 +325,65 @@ export default {
     background-color: #3a3e43;
   }
 }
-.passageway{
+.el-container.passageway {
   width: 500px;
-  height: 540px;
+  min-height: 380px;
   border: 1px solid #666;
+  .el-aside {
+    background-color: #3a3e43;
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        list-style: none;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        color: #ccc;
+        cursor: pointer;
+        &:hover {
+          background-color: #2b2f33;
+        }
+      }
+    }
+  }
+  .el-main{
+    padding-top: 10px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    .el-input{
+      width: 260px;
+      .el-icon-search{
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+    .el-tree{
+      width: 260px;
+      background-color: transparent;
+      color: #ddd;
+      /deep/.el-tree-node__content {
+        background-color: transparent;
+      }
+      /deep/.el-tree-node__children {
+        /deep/.el-tree-node__content {
+          background-color: transparent;
+          &:hover {
+            background-color: #555;
+          }
+        }
+      }
+      /deep/.el-tree-node__expand-icon.expanded {
+        color: #40c4ff;
+      }
+      /deep/.el-checkbox__inner{
+        border-color: #000;
+        background-color: #666;
+      }
+    }
+  }
 }
 </style>

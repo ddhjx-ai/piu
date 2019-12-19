@@ -32,7 +32,6 @@ export default {
   name: 'App',
   data() {
     return {
-      // headerList: ['设备管理', '实时视频', '视频回放', '网关接入', '用户管理'],
       headerList: [
         { item: '设备管理', path: '/WorkManage' },
         { item: '实时视频', path: '/Videolive' },
@@ -122,14 +121,15 @@ div.header ul > li:hover,
 div.header > div > span.username {
   color: #fff;
 }
-
+div.header ul > li.show{
+  background-color: #222;
+}
 div.header ul > li.show::after {
   content: '';
   position: absolute;
   bottom: -6px;
   left: 50%;
   transform: translateX(-50%) rotate(45deg);
-  background-color: #3a3e43;
   border: 5px #00b0ff solid;
   border-bottom-color: transparent;
   border-right-color: transparent;
@@ -156,10 +156,21 @@ div.header > div.icon_right {
       cursor: pointer;
       &:hover {
         color: #fff;
+        background-color: #333;
       }
       &:active {
         background-color: #222;
         border-radius: 2px;
+      }
+      &.el-icon-close{
+        &:hover {
+          color: #fff;
+          background-color: rgba(255, 0, 0, 1);
+        }
+        &:active {
+          color: #fff;
+          background-color: rgba(255, 0, 0, .6);
+        }
       }
     }
   }

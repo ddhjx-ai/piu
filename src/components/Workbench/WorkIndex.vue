@@ -82,7 +82,7 @@ export default {
 }
 </script>
 
-<style lang="" scoped>
+<style lang="less" scoped>
 .workIndex{
   width: 100%;
   height: 100%;
@@ -119,6 +119,13 @@ div.main>ul>li>a{
   height: 100%;
   display: flex;
   align-items: center;
-  margin: 0 30px;
+  padding: 0 30px;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  border-radius: 5px;
+  &:active{
+    border: 2px solid #222;
+    box-shadow: 0 0 3px 1px #222 inset;
+  }
 }
 </style>

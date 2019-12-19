@@ -3,22 +3,22 @@
     <div class='main'>
       <div>
         <ul>
-          <li @click='active = 1'>
+          <li @click='active = 1' :class="{ 'shownow':active == 1 }">
             <i class='el-icon-search'></i>自动搜索
           </li>
-          <li @click='active = 2'>
+          <li @click='active = 2' :class="{ 'shownow':active == 2 }">
             <i class='el-icon-plus'></i>添加设备
           </li>
-          <li @click='active = 3'>
+          <li @click='active = 3' :class="{ 'shownow':active == 3 }">
             <i class='el-icon-folder-add'></i>添加分组
           </li>
           <li>
             <i class='el-icon-delete'></i>删除
           </li>
-          <li @click='active = 5'>
+          <li @click='active = 5' :class="{ 'shownow':active == 5 }">
             <i class='el-icon-upload2' ></i>导出
           </li>
-          <li @click='active = 6'>
+          <li @click='active = 6' :class="{ 'shownow':active == 6 }">
             <i class='el-icon-download'></i>导入
           </li>
         </ul>
@@ -244,6 +244,11 @@ ul > li {
   border-radius: 3px;
   /* box-shadow: 0px 0px 2px 1px #000 inset; */
 }
+.main > div li.shownow{
+  background-color: #222;
+  border-radius: 3px;
+  color: #fff;
+}
 .main > div li:hover{
   color: #fff;
   text-shadow: 0px  0px  #fff;
@@ -266,6 +271,7 @@ ul > li {
 table {
   color: #abb2bd;
   font-size: 14px;
+  /* table-layout : fixed; */
 }
 table > thead {
   height: 30px;
