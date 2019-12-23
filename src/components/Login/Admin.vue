@@ -166,13 +166,17 @@ export default {
 <style lang="less" scoped>
 #admin {
   width: 100%;
-  height: 100%;
+  position: absolute;
   background-color: #3a3e43;
-  position: relative;
+  top: 52px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
 }
 .el-container.container {
+  min-height: 100%;
   position: absolute;
-  // bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
@@ -327,10 +331,11 @@ export default {
 }
 .el-container.passageway {
   width: 500px;
-  min-height: 380px;
+  min-height: 300px;
   border: 1px solid #666;
   .el-aside {
     background-color: #3a3e43;
+    min-height: 300px;
     ul {
       padding: 0;
       margin: 0;
@@ -350,7 +355,6 @@ export default {
   .el-main{
     padding-top: 10px;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     .el-input{

@@ -4,12 +4,11 @@
       <div v-if="$route.path != '/WorkIndex'">
         <router-link to="/WorkIndex" tag="p">工作台</router-link>
         <ul>
-          <router-link
-            v-for="(item,i) in headerList"
-            :key="i"
-            :to="item.path"
-            tag="li"
-          >{{item.item}}</router-link>
+          <router-link to="/WorkManage" tag="li">设备管理</router-link>
+          <router-link to="/Videolive" tag="li">实时视频</router-link>
+          <router-link to="/VideoPlayback" tag="li">视频回放</router-link>
+          <router-link to="/GatewayInto" tag="li">网关接入</router-link>
+          <router-link to="/Admin" tag="li">用户管理</router-link>
         </ul>
       </div>
       <p class="workindex" v-else>基于LTE专用网络的视频传输</p>
@@ -19,7 +18,7 @@
         <div class="icons">
           <i class="el-icon-minus" title="最小化"></i>
           <i class="el-icon-copy-document" title="最大化"></i>
-          <i class="el-icon-close" title="关闭"></i>
+          <i class="el-icon-close" title="退出" @click="loginOut"></i>
         </div>
       </div>
     </div>
@@ -32,16 +31,24 @@ export default {
   name: 'App',
   data() {
     return {
-      headerList: [
-        { item: '设备管理', path: '/WorkManage' },
-        { item: '实时视频', path: '/Videolive' },
-        { item: '视频回放', path: '/VideoPlayback' },
-        { item: '网关接入', path: '/GatewayInto' },
-        { item: '用户管理', path: '/Admin' }
-      ]
     }
   },
-  methods: {},
+  methods: {
+    // 退出登陆
+    async loginOut() {
+      // 弹窗提示
+      let confirm = await this.$confirm('确认退出？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).catch(err => err)
+
+      if (confirm === 'confirm') {
+        console.log(111111111111111111111111)
+        this.$router.push('/')
+      }
+    }
+  },
   computed: {
     getTime() {
       let time = new Date()
@@ -65,7 +72,9 @@ export default {
 div.header {
   height: 50px;
   background-color: #3a3e43;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   color: rgba(229, 229, 229, 1);
 }
@@ -121,7 +130,7 @@ div.header ul > li:hover,
 div.header > div > span.username {
   color: #fff;
 }
-div.header ul > li.show{
+div.header ul > li.show {
   background-color: #222;
 }
 div.header ul > li.show::after {
@@ -162,14 +171,14 @@ div.header > div.icon_right {
         background-color: #222;
         border-radius: 2px;
       }
-      &.el-icon-close{
+      &.el-icon-close {
         &:hover {
           color: #fff;
           background-color: rgba(255, 0, 0, 1);
         }
         &:active {
           color: #fff;
-          background-color: rgba(255, 0, 0, .6);
+          background-color: rgba(255, 0, 0, 0.6);
         }
       }
     }

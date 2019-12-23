@@ -16,7 +16,6 @@ module.exports = {
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     
-    disableHostCheck: true,     //--------IE下一直报错：Invalid Host/Origin header
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,

@@ -1,14 +1,5 @@
 <template>
   <div class="workIndex">
-    <!-- <div class="header">
-      <p>基于LTE专用网络的视频传输</p>
-      <div>
-        <span class="username">admin</span>
-        <span class="nowtime">2019-12-13</span>
-        <img src="../../assets/images/close.png" alt />
-      </div>
-    </div> -->
-
     <div class="main">
       <ul>
         <li>
@@ -85,8 +76,10 @@ export default {
 <style lang="less" scoped>
 .workIndex{
   width: 100%;
-  height: 100%;
-  background-color: rgba(41, 45, 50, 1);
+  min-height: 100%;
+  background-color: #3a3e43;
+  padding-top: 52px;
+  box-sizing: border-box;
 }
 div.main{
   padding:0px 15px;
@@ -123,9 +116,12 @@ div.main>ul>li>a{
   border: 2px solid transparent;
   box-sizing: border-box;
   border-radius: 5px;
+  &:hover{
+    border: 2px solid #222;
+  }
   &:active{
     border: 2px solid #222;
-    box-shadow: 0 0 3px 1px #222 inset;
+    box-shadow: 0 0 4px 1px #222 inset;
   }
 }
 </style>

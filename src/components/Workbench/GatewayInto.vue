@@ -29,7 +29,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item,index) in 10" :key="index">
+          <tr v-for="(item,index) in 15" :key="index">
             <td></td>
             <td></td>
             <td></td>
@@ -115,8 +115,10 @@ export default {
 <style lang="less" scoped>
   #gatewayInto {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-color: #3a3e43;
+  padding-top: 52px;
+  box-sizing: border-box;
 }
 ul {
   margin: 0;
