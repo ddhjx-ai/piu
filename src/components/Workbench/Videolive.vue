@@ -54,7 +54,7 @@
           >{{item}}</el-tag>
         </div>
       </el-col>
-      <el-col :span="12">
+      <!-- <el-col :span="12">
         <div class="el-button-group">
           <div
             class="el-button primary"
@@ -108,7 +108,7 @@
             @mouseup="mouseUpPTZControl"
           >右下</div>
         </div>
-      </el-col>
+      </el-col> -->
     </el-row>
   </div>
 </template>
@@ -138,6 +138,8 @@ export default {
   created: function() {},
   mounted: function() {
     this.videoInitPlugin() // 初始化video界面
+    this.onLogin()
+    this.clickStartRealPlay()
   },
 
   destroyed: function() {
@@ -159,25 +161,25 @@ export default {
         {
           async: false,
           success: function(xmlDoc) {
-            // console.log('xmlDoc2', xmlDoc);//不能删除
+            console.log('xmlDoc2', xmlDoc) // 不能删除
             // TODO 获取通道信息
             that.getChannelInfo()
             that.getDevicePort(that.hkvInfo.ip + '_' + that.hkvInfo.port)
             that.loginLoading = false
 
-            that.$message({
-              showClose: true,
-              message: '登录成功',
-              type: 'success'
-            })
+            // that.$message({
+            //   showClose: true,
+            //   message: '登录成功',
+            //   type: 'success'
+            // })
           },
           error: function() {
             that.loginLoading = false
-            that.$message({
-              showClose: true,
-              message: '登录失败',
-              type: 'error'
-            })
+            // that.$message({
+            //   showClose: true,
+            //   message: '登录失败',
+            //   type: 'error'
+            // })
           }
         }
       )
@@ -187,17 +189,17 @@ export default {
       var szDeviceIdentify = this.hkvInfo.ip + '_' + this.hkvInfo.port
       var iRet = WebVideoCtrl.I_Logout(szDeviceIdentify)
       if (0 == iRet) {
-        this.$message({
+        /* this.$message({
           showClose: true,
           message: '退出成功',
           type: 'success'
-        })
+        }) */
       } else {
-        this.$message({
+        /* this.$message({
           showClose: true,
           message: '退出失败',
           type: 'error'
-        })
+        }) */
       }
     },
     clickStartRealPlay() {
@@ -262,19 +264,19 @@ export default {
         iChannelID: iChannelID,
         bZeroChannel: that.bZeroChannel,
         success: function() {
-          that.$notify({
+          /* that.$notify({
             title: '成功',
             message: '开始预览通道' + iChannelID + '成功',
             type: 'success'
-          })
+          }) */
         },
         error: function(status, xmlDoc2) {
           console.log(xmlDoc2) // 不能删除
-          that.$notify({
+         /*  that.$notify({
             title: '失败',
             message: '开始预览通道' + iChannelID + '失败',
             type: 'error'
-          })
+          }) */
           if (status === 403) {
             console.log('szInfo 设备不支持Websocket取流！')
           } else {
@@ -295,18 +297,18 @@ export default {
       WebVideoCtrl.I_Stop({
         iWndIndex: iWndIndex,
         success: function() {
-          that.$notify({
+          /* that.$notify({
             title: '成功',
             message: '停止预览窗口' + iWndIndex + '成功',
             type: 'success'
-          })
+          }) */
         },
         error: function() {
-          that.$notify({
+          /* that.$notify({
             title: '失败',
             message: '停止预览窗口' + iWndIndex + '失败',
             type: 'error'
-          })
+          }) */
         }
       })
     },
@@ -354,64 +356,64 @@ export default {
         }
       })
       // TODO 零通道
-    },
-    mouseDownPTZControl: function(iPTZIndex) {
-      var oWndInfo = WebVideoCtrl.I_GetWindowStatus(this.mySelectWnd)
-
-      if (oWndInfo !== null) {
-        if (iPTZIndex === 9 && this.g_bPTZAuto) {
-          iPTZSpeed = 0
-        } else {
-          this.g_bPTZAuto = false
-        }
-
-        WebVideoCtrl.I_PTZControl(iPTZIndex, false, {
-          iPTZSpeed: 4,
-          mysuccess: function(xmlStr) {
-            console.log('I_PTZControl', xmlStr)
-            if (iPTZIndex === 9 && this.g_bPTZAuto) {
-              console.log(
-                oWndInfo.szDeviceIdentify + ' 停止云台成功！mouseDown'
-              )
-            } else {
-              console.log(
-                oWndInfo.szDeviceIdentify + ' 开启云台成功！mouseDown'
-              )
-            }
-            if (iPTZIndex === 9) {
-              this.g_bPTZAuto = !this.g_bPTZAuto
-            }
-          },
-          error: function(status, xmlDoc) {
-            console.log(
-              oWndInfo.szDeviceIdentify + ' 开启云台失败！mouseDown',
-              status,
-              xmlDoc
-            )
-          }
-        })
-      }
-    },
-    mouseUpPTZControl: function() {
-      var oWndInfo = WebVideoCtrl.I_GetWindowStatus(this.mySelectWnd)
-      if (oWndInfo !== null) {
-        WebVideoCtrl.I_PTZControl(1, true, {
-          mysuccess: function(xmlStr) {
-            console.log(
-              oWndInfo.szDeviceIdentify + ' 停止云台成功！mouseUp',
-              xmlStr
-            )
-          },
-          error: function(status, xmlDoc) {
-            console.log(
-              oWndInfo.szDeviceIdentify + ' 停止云台失败！mouseUp',
-              status,
-              xmlDoc
-            )
-          }
-        })
-      }
     }
+    // mouseDownPTZControl: function(iPTZIndex) {
+    //   var oWndInfo = WebVideoCtrl.I_GetWindowStatus(this.mySelectWnd)
+
+    //   if (oWndInfo !== null) {
+    //     if (iPTZIndex === 9 && this.g_bPTZAuto) {
+    //       iPTZSpeed = 0
+    //     } else {
+    //       this.g_bPTZAuto = false
+    //     }
+
+    //     WebVideoCtrl.I_PTZControl(iPTZIndex, false, {
+    //       iPTZSpeed: 4,
+    //       mysuccess: function(xmlStr) {
+    //         console.log('I_PTZControl', xmlStr)
+    //         if (iPTZIndex === 9 && this.g_bPTZAuto) {
+    //           console.log(
+    //             oWndInfo.szDeviceIdentify + ' 停止云台成功！mouseDown'
+    //           )
+    //         } else {
+    //           console.log(
+    //             oWndInfo.szDeviceIdentify + ' 开启云台成功！mouseDown'
+    //           )
+    //         }
+    //         if (iPTZIndex === 9) {
+    //           this.g_bPTZAuto = !this.g_bPTZAuto
+    //         }
+    //       },
+    //       error: function(status, xmlDoc) {
+    //         console.log(
+    //           oWndInfo.szDeviceIdentify + ' 开启云台失败！mouseDown',
+    //           status,
+    //           xmlDoc
+    //         )
+    //       }
+    //     })
+    //   }
+    // },
+    // mouseUpPTZControl: function() {
+    //   var oWndInfo = WebVideoCtrl.I_GetWindowStatus(this.mySelectWnd)
+    //   if (oWndInfo !== null) {
+    //     WebVideoCtrl.I_PTZControl(1, true, {
+    //       mysuccess: function(xmlStr) {
+    //         console.log(
+    //           oWndInfo.szDeviceIdentify + ' 停止云台成功！mouseUp',
+    //           xmlStr
+    //         )
+    //       },
+    //       error: function(status, xmlDoc) {
+    //         console.log(
+    //           oWndInfo.szDeviceIdentify + ' 停止云台失败！mouseUp',
+    //           status,
+    //           xmlDoc
+    //         )
+    //       }
+    //     })
+    //   }
+    // }
   }
 }
 </script>
