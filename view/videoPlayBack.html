@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/videoPlayBack.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="header">
+    <div class="header_left">
+      <h3>工作台</h3>
+      <ul>
+        <li>设备管理</li>
+        <li><a href="./videoLive.html">实时视频</a></li>
+        <li class="active"><a href="./videoPlayBack.html">视频回放</a></li>
+        <li>网关接入</li>
+        <li>用户管理</li>
+      </ul>
+    </div>
+    <div class="header_right">
+      <span class="user">admin</span>
+      <span class="setDate"></span>
+      <span class="fa fa-minus" title="最小化"></span>
+      <span class="fa fa-window-maximize" title="最大化"></span>
+      <span class="fa fa-times" title="退出"></span>
+    </div>
+  </div>
+  <div class="my_container">
+    <div class="container_left">
+      <div class="container_left_top">
+        <div class="device">
+          <p><span class="active"><i class="fa fa-inbox"></i> 设备</span><span><i class="fa fa-desktop"></i> 本地</span></p>
+          <p class="active select">设备<span class="fa fa-caret-right"></span></p>
+          <p class="select"><span>本地</span><span class="fa fa-caret-right"></span></p>
+        </div>
+        <div class="search">
+          <input type="text" placeholder="搜索">
+          <span class="fa fa-search"></span>
+        </div>
+        <div class="groups">
+          <p><span class="fa fa-caret-right"></span><input type="checkbox"><span class="fa fa-sitemap"></span> 默认分组</p>
+          <ul>
+            <li><input type="checkbox"><span class="fa fa-check-circle-o"></span> <span class="fa fa-ban"> </span> A栋大3楼1001</li>
+            <li><input type="checkbox"><span class="fa fa-check-circle-o"></span>A栋大3楼1001</li>
+            <li><input type="checkbox"><span class="fa fa-check-circle-o"></span>A栋大3楼1001</li>
+           
+          </ul>
+          <p><span class="fa fa-caret-right"></span><input type="checkbox"><span class="fa fa-sitemap"></span> 默认分组</p>
+          <ul>
+            <li><input type="checkbox"><span class="fa fa-check-circle-o"></span> <span class="fa fa-ban"> </span> A栋大3楼1001</li>
+            <li><input type="checkbox"><span class="fa fa-check-circle-o"></span>A栋大3楼1001</li>
+            <li><input type="checkbox"><span class="fa fa-check-circle-o"></span>A栋大3楼1001</li>
+            <li><input type="checkbox"><span class="fa fa-check-circle-o"></span>A栋大3楼1001</li>
+          </ul>
+        </div>
+      </div>
+      <div class="left_views">
+        <p>视图 <span class="fa fa-caret-right"></span></p>
+        <form action="">
+          <div class="radios">
+            <label for="video" >
+              <input type="radio" id="video" name='radio_type'>
+              录像
+            </label>
+            <label for="picture">
+              <input type="radio" id="picture" name='radio_type'>
+              图片
+            </label>
+          </div>
+          <div class="video_type">
+            录像类型：<br>
+            <select name="" id="">
+              <option value="所有录像">所有录像</option>
+              <option value="所有录像">临时录像</option>
+            </select>
+            <span class="fa fa-caret-down"></span>
+          </div>
+          <div class="code_type">
+            码流类型：<br>
+            <select name="" id="">
+              <option value="主码流">主码流</option>
+              <option value="副码流">副码流</option>
+            </select>
+            <span class="fa fa-caret-down"></span>
+          </div>
+          <div class="time_type">
+            时间：<br>
+            <input type="text">
+          </div>
+          <div class="other_type">
+            <span class="fa fa-credit-card-alt"></span><br>
+            <input type="text">
+          </div>
+          <div class="search_code">
+            <input type="button" value="搜索">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="container_right">
+      <div id="divPlugin" class="plugin"></div>
+      <div class="player_icons">
+        <div class="icons_left">
+          <span class="fa fa-file-o"></span>
+          <select>
+            <option value="15">15分钟</option>
+            <option value="30">30分钟</option>
+            <option value="45">45分钟</option>
+            <option value="60">60分钟</option>
+          </select>
+          <span class="fa fa-caret-down"></span>
+          <span class="fa fa-refresh"></span>
+        </div>
+        <div class="icons_right">
+          <span class="fa fa-th-large"></span>
+          <span class="fa fa-th"></span>
+          <span class="fa">16</span>
+          <span class="fa fa-arrows-alt "></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../lib/jquery-1.7.1.min.js"></script>
+  <script src="../codebase/webVideoCtrl.js"></script>
+  <script src="../js/videoPlayBack.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/videoLive.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class="header_left">
+      <h3>工作台</h3>
+      <ul>
+        <li class="click_test">设备管理</li>
+        <li class="active"><a href="./videoLive.html">实时视频</a></li>
+        <li><a href="./videoPlayBack.html">视频回放</a></li>
+        <li>网关接入</li>
+        <li>用户管理</li>
+      </ul>
+    </div>
+    <div class="header_right">
+      <span class="user">admin</span>
+      <span class="setDate"></span>
+      <span class="fa fa-minus" title="最小化"></span>
+      <span class="fa fa-window-maximize" title="最大化"></span>
+      <span class="fa fa-times" title="退出"></span>
+    </div>
+  </div>
+  <div class="my_container">
+    <div class="container_left">
+      <div class="container_left_top">
+        <p>组织树</p>
+        <div class="search">
+          <input type="text" placeholder="搜索">
+          <span class="fa fa-search"></span>
+        </div>
+        <div class="groups">
+          <!-- <p><span class="fa fa-caret-right"></span> <span class="fa fa-sitemap"></span> 默认分组</p>
+          <ul>
+            <li><span class="fa fa-check-circle-o"></span> <span class="fa fa-ban"> </span> A栋大3楼1001</li>
+            <li><span class="fa fa-check-circle-o"></span>A栋大3楼1001</li>
+            <li><span class="fa fa-check-circle-o"></span>A栋大3楼1001</li>
+          </ul>
+          <p><span class="fa fa-caret-right"></span> <span class="fa fa-sitemap"></span> 默认分组</p>
+          <ul>
+            <li><span class="fa fa-check-circle-o"></span> <span class="fa fa-ban"> </span> A栋大3楼1001</li>
+            <li><span class="fa fa-check-circle-o"></span>A栋大3楼1001</li>
+          </ul> -->
+        </div>
+      </div>
+      <!-- 云台 -->
+      <div class="yuntai">
+        <p>云台</p>
+        <!-- <span><span class="fa fa-th-large"></span> <span class="mouse"></span></p> -->
+        <div class="operate">
+          <span></span><span class="click" onmousedown="mouseDownPTZControl(1);"
+            onmouseup="mouseUpPTZControl();"></span><span></span>
+          <span class="click" onmousedown="mouseDownPTZControl(3);"
+            onmouseup="mouseUpPTZControl();"></span><span></span><span class="click"
+            onmousedown="mouseDownPTZControl(4);" onmouseup="mouseUpPTZControl();"></span>
+          <span></span><span class="click" onmousedown="mouseDownPTZControl(2);"
+            onmouseup="mouseUpPTZControl();"></span><span></span>
+        </div>
+        <label>
+          步长
+          <input class="getSpeed" type="range" min="1" max="10" step="1" onchange="getSpeed(this)" value="3">
+        </label>
+        <div class="icons">
+          <!-- <span class="fa fa-search-plus" onmousedown="PTZZoomIn()" onmouseup="PTZZoomStop()"></span>
+          <span class="fa fa-plus-square-o" onmousedown="PTZFocusIn()" onmouseup="PTZFoucusStop()"></span>
+          <span class="fa fa-circle-o" onmousedown="PTZIrisIn()" onmouseup="PTZIrisStop()"></span><br><br>
+          <span class="fa fa-search-minus" onmousedown="PTZZoomout()" onmouseup="PTZZoomStop()"></span>
+          <span class="fa fa-minus-square-o" onmousedown="PTZFoucusOut()" onmouseup="PTZFoucusStop()"></span>
+          <span class="fa fa-circle-o-notch" onmousedown="PTZIrisOut()" onmouseup="PTZIrisStop()"></span> -->
+          <span onmousedown="PTZZoomIn()" onmouseup="PTZZoomStop()">倍数+</span>
+          <span onmousedown="PTZFocusIn()" onmouseup="PTZFoucusStop()">变焦+</span>
+          <span onmousedown="PTZIrisIn()" onmouseup="PTZIrisStop()">光圈+</span>
+          <span onmousedown="PTZIrisIn()" onclick="clickStartRecord();">开始录屏</span>
+          <span onmousedown="PTZZoomout()" onmouseup="PTZZoomStop()">倍数-</span>
+          <span onmousedown="PTZFoucusOut()" onmouseup="PTZFoucusStop()">变焦-</span>
+          <span onmousedown="PTZIrisOut()" onmouseup="PTZIrisStop()">光圈-</span>
+          <span onmousedown="PTZIrisOut()" onclick="clickStopRecord();">停止录屏</span>
+        </div>
+      </div>
+    </div>
+    <div class="container_right">
+      <div id="divPlugin" class="plugin"></div>
+      <div class="player_icons">
+        <div class="icons_left">
+          <span class="fa fa-file-o" onclick="clickOpenFileDlg('recordPath', 0);" title="选择文件夹"></span>
+          <input id="recordPath" type="text" class="txt"/>
+          <!-- <select>
+            <option value="15">15分钟</option>
+            <option value="30">30分钟</option>
+            <option value="45">45分钟</option>
+            <option value="60">60分钟</option>
+          </select> -->
+          <!-- <span class="fa fa-caret-down"></span> -->
+          <!-- <span class="fa fa-refresh" title="开始录屏" onclick="clickStartRecord();"></span> -->
+        </div>
+        <div class="icons_right">
+          <span class="fa fa-th-large" onclick="screenFour(2)"></span>
+          <span class="fa fa-th" onclick="screenNine(3)"></span>
+          <span class="fa" onclick="screenSixteen(4)">16</span>
+          <span class="fa fa-arrows-alt " onclick="clickFullScreen()"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 弹出框 -->
+  <!-- <div class="messageBox">
+    <div>
+      <p><span>提示</span><span class="fa fa-times"></span></p>
+      <p><span class="fa fa-exclamation-triangle"></span> 确认退出？</p>
+      <p><button class="confirm">确认</button><button class="cancel">取消</button></p>
+    </div>
+  </div> -->
+  <script type="text/html" id='videoTitle'>
+    {{ each name }}
+    <p><span class="fa fa-caret-right"></span> <span class="fa fa-sitemap"></span> {{$value}}</p>
+    {{ /each }}
+  </script>
+
+  <script type="text/html" id="videoLists">
+    {{ each videos }}
+    <ul>
+      {{ each $value}}
+      <li data-id='{{$value.id}}'><span class="fa fa-check-circle-o"></span>{{ $value.name }}</li>
+      {{ /each }}
+    </ul>
+    {{ /each }}
+  </script>
+
+  <script src="../lib/jquery-1.7.1.min.js"></script>
+  <script src="../lib/template.js"></script>
+  <script src="../codebase/webVideoCtrl.js"></script>
+  <script src="../js/videoLive.js"></script>
+</body>
+
+</html>
