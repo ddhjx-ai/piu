@@ -1,0 +1,83 @@
+.mian > .form-inline{
+  margin: 30px 0;
+}
+
+.mian > .form-inline > .form-group{
+  margin:0 50px 0 15px;
+}
+
+.mian > .form-inline > .form-group input{
+  height: 26px;
+  width: 200px;
+  padding: 0;
+  padding-left: 10px;
+  border: none;
+  border: 1px solid #ccc;
+  background-color: #000;
+}
+.mian > .form-inline >  button{
+  height: 26px;
+  padding: 0;
+  width: 60px;
+  margin-left: 50px;
+}
+.container-fluid>div {
+  height: 480px;
+}
+table{
+  table-layout: fixed;
+}
+th,td{
+  text-align: center;
+}
+tr>td span,
+tr>th span {
+  display: inline-block;
+  width: 45%;
+  height: 100%;
+  text-align: center;
+}
+
+tr>td:last-child span {
+  color: #377ff4;
+  cursor: pointer;
+}
+.container-fluid > button{
+  margin-bottom: 10px;
+}
+.table-bordered,
+.table-bordered>tbody>tr>td,
+.table>thead:first-child>tr:first-child>th {
+  border-color: #666;
+}
+
+.table-bordered>thead>tr>td,
+.table-bordered>thead>tr>th {
+  border-bottom-width: 1px;
+}
+
+.table>thead:first-child>tr:first-child>th {
+  background-color: #333;
+}
+
+.table-bordered>tbody>tr:nth-child(odd) {
+  background-color: #444;
+}
+/* 覆盖bootstrap样式 */
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 200px auto;
+  }
+}
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.form-control{
+  display: inline-block;
+  width: 460px;
+  margin-left: 10px;
+}

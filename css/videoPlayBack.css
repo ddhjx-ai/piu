@@ -7,7 +7,7 @@
 .container_left{
   /* --------------谷歌------------------- */
   overflow: auto;
-  width: 250px;
+  width: 280px;
   height: 100%;
   background-color: #2a2e33;
   display: flex;
@@ -117,10 +117,10 @@
   justify-content: space-between;
 }
 .container_left .left_views form .radios{
-  padding: 8px 30px;
+  padding: 8px 50px;
 }
 .container_left .left_views form #picture{
-  margin-left: 60px;
+  margin-left: 70px;
 }
 .container_left .left_views form{
   padding: 0 5px;
@@ -136,22 +136,34 @@
   border-radius: 5px;
   background-color: #000;
   color: #ccc;
-  height: 22px;
-  text-indent: 5px;
+  height: 25px;
+  text-indent: 10px;
   margin: 3px 0;
 }
-.container_left .left_views .video_type span,
-.container_left .left_views .code_type span{
+.container_left .left_views .video_group span{
   position: absolute;
-  top: 20px;
+  top: 22px;
   right: 5px;
 }
 .container_left .left_views form .search_code input{
-  height: 28px;
+  height: 30px;
   background-color: #00b0ff;
   color: #fff;
-  margin-bottom: 5px;
+  margin: 15px 0;
   cursor: pointer;
+}
+.container_left .left_views form .time_type{
+  position: relative;
+}
+.container_left .left_views form .time_type i:nth-of-type(1){
+  position: absolute;
+  right: 10px;
+  top: 25px;
+}
+.container_left .left_views form .time_type i:nth-of-type(2){
+  position: absolute;
+  right: 10px;
+  top: 73px;
 }
 .container_right{
   flex: 1;
@@ -189,6 +201,24 @@
   right: 32px;
   top: 0px;
   pointer-events: none;
+}
+.container_right .icons_center span,
+.container_right .icons_right span{
+  display: inline-block;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 3px;
+}
+.container_right .icons_center span:hover,
+.container_right .icons_right span:hover{
+  color: #fff;
+  background-color: #111;
+}
+.container_right .icons_center span:active,
+.container_right .icons_right span:active{
+  background-color: #000;
 }
 
 select::-ms-expand { 

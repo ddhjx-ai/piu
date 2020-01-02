@@ -1,4 +1,4 @@
-*{
+* ,p,ul{
   padding: 0;
   margin: 0;
   -moz-user-select: none;
@@ -7,28 +7,53 @@
   user-select: none;
   box-sizing: border-box;
 }
-body,html{
+
+body,
+html {
   height: 100%;
   font-size: 14px;
   color: #ccc;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #3a3e43;
 }
-li{
+
+li {
   list-style: none;
 }
-select{
-  -webkit-appearance:none;
-  -moz-appearance:none;
-  appearance:none;
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
-a{
+
+a {
   text-decoration: none;
-  color: #ccc;
+  color: #eee;
 }
-input{
+
+input,button {
   outline: none;
 }
-span.fa{
+
+.header_right span.fa {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 3px;
+  font-size: 18px;
+}
+
+.header_right span.fa:hover {
+  color: #fff;
+  background-color: #111;
+}
+
+.header_right span.fa:active {
+  background-color: #000;
+}
+
+span.fa {
   cursor: pointer;
   display: inline-block;
   width: 22px;
@@ -36,16 +61,8 @@ span.fa{
   line-height: 22px;
   text-align: center;
 }
-/* span.fa:hover{
-  color: #fff;
-  background-color: #333;
-}
-span.fa:active{
-  background-color: #000;
-} */
 
-
-.header{
+.header {
   height: 52px;
   border-bottom: 2px solid #00b0ff;
   display: flex;
@@ -54,26 +71,31 @@ span.fa:active{
   background-color: #3a3e43;
   color: rgba(229, 229, 229, 1);
 }
-.header> .header_left{
+
+.header>.header_left {
   display: flex;
   height: 50px;
   justify-content: center;
   align-items: center;
 }
-.header> .header_left h3{
+
+/* .header>.header_left li a{
   cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
   font-size: 20px;
-  width: 120px;
-  height: 50px;
   line-height: 50px;
   text-align: center;
-}
-.header> .header_left > ul{
+} */
+
+.header>.header_left>ul {
   display: flex;
   align-items: center;
   height: 50px;
 }
-.header> .header_left > ul >li{
+
+.header>.header_left>ul>li {
   cursor: pointer;
   width: 120px;
   height: 100%;
@@ -84,7 +106,10 @@ span.fa:active{
   text-align: center;
   position: relative;
 }
-div.header ul > li.active::after {
+.header>.header_left>ul>li:nth-of-type(1){
+  font-size: 22px;
+}
+div.header ul>li.active::after {
   content: '';
   position: absolute;
   bottom: -6px;
@@ -94,16 +119,19 @@ div.header ul > li.active::after {
   border-bottom-color: transparent;
   border-right-color: transparent;
 }
-div.header ul > li:hover,
-div.header  h3:hover{
+
+div.header ul>li:hover{
   background-color: #333;
   border-radius: 3px;
 }
-div.header ul > li.active,
-div.header  h3:active {
+div.header ul>li:hover a{
+  color: #eee;
+}
+div.header ul>li.active{
   background-color: #222;
   border-radius: 3px;
 }
-div.header > .header_right > .setDate{
+
+div.header>.header_right>.setDate {
   margin: 0 15px;
 }

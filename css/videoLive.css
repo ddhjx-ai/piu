@@ -8,7 +8,7 @@
 .container_left{
   /* --------------谷歌------------------- */
   overflow: auto;
-  width: 260px;
+  width: 280px;
   height: 100%;
   background-color: #2a2e33;
   display: flex;
@@ -87,24 +87,6 @@
   justify-content: space-between;
   align-items: center;
 }
-/* .container_left > .yuntai > p:nth-of-type(2){
-  height: 36px;
-  padding: 0 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #aaa;
-  font-size: 18px;
-  background-color: #2a2e33;
-}
-.container_left > .yuntai > p:nth-of-type(2) span:last-child{
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background: url(../images/鼠标.png) no-repeat center;
-  cursor: pointer;
-  background-size: 100% 100%;
-} */
 .container_left > .yuntai > .operate{
   width: 115px;
   height: 115px;
@@ -128,16 +110,10 @@
   width: 150px;
 }
 .container_left > .yuntai > .icons{
-  /* font-size: 20px; */
   padding: 10px 0;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-evenly;
-  -ms-justify-content: space-evenly; */
 }
-/* .container_left > .yuntai > .icons span{
-  margin: 0 10px;
-} */
 .yuntai .icons span{
   text-align: center;
   font-size: 13px;
@@ -145,7 +121,8 @@
   border-radius: 3px;
   width: 23%;
   height: 25px;
-  margin: 0 2px 5px;
+  line-height: 22px;
+  margin: 0 2px 10px;
   border: 2px solid rgba(205, 224, 230, 0.5);
 }
 .yuntai .icons span:hover{
@@ -219,13 +196,11 @@ select::-ms-expand {
   border-radius: 3px;
 }
 .icons_left span.fa-file-o:hover,
-.icons_left span.fa-refresh:hover,
 .container_right .icons_right span:hover{
   color: #fff;
   background-color: #111;
 }
 .icons_left span.fa-file-o:active,
-.icons_left span.fa-refresh:active,
 .container_right .icons_right span:active{
   background-color: #000;
 }
@@ -261,4 +236,8 @@ input[type=range]::-ms-fill-lower {
   height: 14px;
   border-radius: 14px;
   background-color: #666;
+}
+
+input::-ms-clear, input::-ms-reveal{
+  display: none;
 }

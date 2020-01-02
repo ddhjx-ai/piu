@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/gateWay.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="header">
+    <div class="header_left">
+      <ul>
+        <li><a href="./workDesk.html">工作台</a> </li>
+        <li ><a href="./deviceManage.html">设备管理</a></li>
+        <li><a href="./videoLive.html">实时视频</a></li>
+        <li><a href="./videoPlayBack.html">视频回放</a></li>
+        <li class="active"><a href="./gateWay.html">网关接入</a></li>
+        <li><a href="./admin.html">用户管理</a></li>
+      </ul>
+    </div>
+    <div class="header_right">
+      <span class="user">admin</span>
+      <span class="setDate"></span>
+      <span class="fa fa-minus" title="最小化"></span>
+      <span class="fa fa-window-maximize" title="最大化"></span>
+      <span class="fa fa-times" title="退出"></span>
+    </div>
+  </div>
+  <div class="mian">
+    <form class="form-inline" autocomplete="off">
+      <div class="form-group">
+        <label for="name">接入项目名称:</label>
+        <input type="text" class="form-control" id="name" placeholder="请输入项目名称">
+      </div>
+      <div class="form-group">
+        <label for="path">访问路径:</label>
+        <input type="email" class="form-control" id="path" placeholder="请输入访问路径">
+      </div>
+      <button type="submit" class="btn btn-primary">查询</button>
+    </form>
+
+    <div class="container-fluid">
+      <button class="btn btn-primary"  data-toggle="modal" data-target="#addGateWay">新增网关</button>
+      <div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>接入系统名称</th>
+              <th>IP</th>
+              <th>端口号</th>
+              <th>协议</th>
+              <th>备注</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+      <nav>
+        <ul class="pagination">
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- 新增网关模态框 -->
+  <div class="modal fade bs-example-modal-sm" id="addGateWay" tabindex="-1">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">新增网关</h4>
+        </div>
+        <div class="modal-body">
+          <form autocomplete="off">
+            <div class="form-group">
+              <label>接入系统名称</label>
+              <input type="text" class="form-control" placeholder="请输入接入系统名称">
+            </div>
+            <div class="form-group">
+              <label>IP</label>
+              <input type="text" class="form-control"  placeholder="请输入IP">
+            </div>
+            <div class="form-group">
+              <label>端口号</label>
+              <input type="text" class="form-control" placeholder="请输入端口号">
+            </div>
+            <div class="form-group">
+              <label>协议</label>
+              <input type="text" class="form-control" placeholder="请输入协议">
+            </div>
+            <div class="form-group">
+              <label>备注</label>
+              <input type="text" class="form-control" placeholder="请输入备注">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">添加</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/html" id="gateWayList">
+    {{each list}}
+      <tr>
+        <td>{{$value.gatewayName}}</td>
+        <td>{{$value.sipServerAddress}}</td>
+        <td>{{$value.gatewayName}}</td>
+        <td>{{$value.gatewayName}}</td>
+        <td>{{$value.gatewayName}}</td>
+        <td>
+          <span>移除</span>
+          <span data-id='{{$value.id}}' data-toggle="modal" data-target="#editGateWay">修改</span>
+        </td>
+      </tr>
+    {{/each}}
+  </script>
+
+  <script src="../lib/jquery1.10.2.js"></script>
+  <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+  <script src="../lib/template.js"></script>
+  <script src="../js/baseUrl.js"></script>
+  <script src="../js/gateWay.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+div.main>.operate {
+  display: flex;
+  justify-content: space-between;
+  height: 45px;
+  padding: 0 20px;
+}
+div.main>.operate>div button {
+  margin-right: 10px;
+}
+
+div.main>.operate>div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.main>.operate>div input {
+  border: 0;
+  border: 1px solid #ccc;
+  background-color: transparent;
+  border-radius: 5px;
+  color: #ddd;
+  height: 40px;
+  width: 180px;
+  text-indent: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+div.main>.operate>div i {
+  display: inline-block;
+  height: 40px;
+  width: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  line-height: 40px;
+  text-align: center;
+  color: #eee;
+  font-size: 25px;
+  cursor: pointer;
+  background-color: #666;
+}
+
+div.main>.operate>div i:active {
+  background-color: #333;
+}
+
+div.main>.operate>div span {
+  margin-right: 20px;
+}
+
+table{
+  table-layout: fixed;
+}
+th,td{
+  text-align: center;
+}
+.container-fluid > button{
+  margin-bottom: 10px;
+}
+tr>th span {
+  display: inline-block;
+  width: 45%;
+  height: 100%;
+  text-align: center;
+}
+
+tr>td:last-child span {
+  color: #377ff4;
+  cursor: pointer;
+}
+
+.table-bordered,
+.table-bordered>tbody>tr>td,
+.table>thead:first-child>tr:first-child>th {
+  border-color: #666;
+}
+
+.table-bordered>thead>tr>td,
+.table-bordered>thead>tr>th {
+  border-bottom-width: 1px;
+}
+
+.table>thead:first-child>tr:first-child>th {
+  background-color: #333;
+}
+
+.table-bordered>tbody>tr:nth-child(odd) {
+  background-color: #444;
+}
+td,
+th {
+  text-align: center;
+}
+.rolesChoose{
+  display: flex;
+  flex-wrap: wrap;
+}
+.rolesChoose div{
+  width:480px;
+}
+.rolesChoose div input{
+  margin-left: 10px;
+}
+/* 覆盖bootstrap样式 */
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 200px auto;
+  }
+}
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.form-control{
+  display: inline-block;
+  width: 480px;
+  margin-left: 10px;
+}

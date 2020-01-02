@@ -14,13 +14,13 @@
 <body>
   <div class="header">
     <div class="header_left">
-      <h3>工作台</h3>
       <ul>
-        <li class="click_test">设备管理</li>
+        <li><a href="./workDesk.html">工作台</a> </li>
+        <li><a href="./deviceManage.html">设备管理</a></li>
         <li class="active"><a href="./videoLive.html">实时视频</a></li>
         <li><a href="./videoPlayBack.html">视频回放</a></li>
-        <li>网关接入</li>
-        <li>用户管理</li>
+        <li><a href="./gateWay.html">网关接入</a></li>
+        <li><a href="./admin.html">用户管理</a></li>
       </ul>
     </div>
     <div class="header_right">
@@ -131,7 +131,7 @@
     {{ each videos }}
     <ul>
       {{ each $value}}
-      <li data-id='{{$value.id}}'><span class="fa fa-check-circle-o"></span>{{ $value.name }}</li>
+      <li data-id='{{$value.id}}' data-groupId="{{$value.groupId}}"><span class="fa fa-check-circle-o"></span>{{ $value.name }}</li>
       {{ /each }}
     </ul>
     {{ /each }}
@@ -140,6 +140,7 @@
   <script src="../lib/jquery-1.7.1.min.js"></script>
   <script src="../lib/template.js"></script>
   <script src="../codebase/webVideoCtrl.js"></script>
+  <script src="../js/baseUrl.js"></script>
   <script src="../js/videoLive.js"></script>
 </body>
 

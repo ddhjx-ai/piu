@@ -6,14 +6,20 @@ $(function(){
   // 获取当前时间函数
   getDate()
   clickGroups()
-  // clickLi()
+  // 设置初始化本地存储地址
+  clickGetLocalCfg()
+  clickSetLocalCfg()
+})
+
+// 离开当前页面触发的函数
+$(window).unload(function() {
+  console.log(123)
 })
 
 // 存放所有视频的列表
 var allListArray = []
 // 存储当前播放的视频列表
 var deviceListArray = []
-var deviceObj = {}
 
 // 全局变量
 var g_iWndIndex = 0; //可以不用设置这个变量，有窗口参数的接口中，不用传值，开发包会默认使用当前选择窗口
@@ -94,30 +100,36 @@ function clickLogin(deviceList) {
 }
 // 开始预览
 function clickStartRealPlay(address, g_iWndIndex) {
-  // console.log('g_iWndIndex' +  g_iWndIndex)
   let oWndInfo = WebVideoCtrl.I_GetWindowStatus(g_iWndIndex);
+  // console.log(oWndInfo)
   if ("" == address) {
     return;
   }
   let iRet = WebVideoCtrl.I_StartRealPlay(address, {
     iWndIndex: g_iWndIndex
   });
-  console.log('iRet:'+ iRet)
   if (0 == iRet) {
-    console.log("start real play success！");
-    // g_iWndIndex++;
+    console.log("预览成功");
   } else {
-    console.log("start real play failed！");
+    console.log("预览失败");
   }
 }
 
 // 显示单个视频函数
 function getOneVideo(deviceList) {
+  if(deviceListArray[g_iWndIndex]){
+    clickStopRealPlay(g_iWndIndex)
+    clickLogout(deviceListArray[g_iWndIndex])
+  }
+  deviceListArray[g_iWndIndex] = deviceList
+  console.log('g_iWndIndex:'+ g_iWndIndex)
   var iRet = WebVideoCtrl.I_Login(deviceList.address, 0, deviceList.port, deviceList.username, deviceList.password, {
     success: function (xmlDoc) {
-      console.log(xmlDoc)
       clickStartRealPlay(deviceList.address, g_iWndIndex)
-      // g_iWndIndex++
+      g_iWndIndex++
+      if(g_iWndIndex >= iWndowType*iWndowType){
+        g_iWndIndex = 0
+      }
     },
     error: function () {
     }
@@ -125,6 +137,10 @@ function getOneVideo(deviceList) {
   if (-1 == iRet) {
     // console.log(deviceList.address + " login already !");
     clickStartRealPlay(deviceList.address, g_iWndIndex)
+    g_iWndIndex++
+    if(g_iWndIndex >= iWndowType*iWndowType){
+      g_iWndIndex = 0
+    }
   }
 }
 // 点击控制摄像头方向函数
@@ -295,15 +311,31 @@ function PTZIrisStop() {
 }
 // 停止预览
 function clickStopRealPlay(i) {
-	var oWndInfo = WebVideoCtrl.I_GetWindowStatus(i)
-	if (oWndInfo != null) {
-		var iRet = WebVideoCtrl.I_Stop();
+  // var oWndInfo = WebVideoCtrl.I_GetWindowStatus(i)
+	// if (oWndInfo != null) {
+		var iRet = WebVideoCtrl.I_Stop(i);
 		if (0 == iRet) {
       console.log("停止预览成功！")
 			// szInfo = "停止预览成功！";
 		} else {
 			// szInfo = "停止预览失败！";
 		}
+	// }
+}
+// 退出登陆
+function clickLogout(item) {
+	var szIP =item.address;
+	if (szIP == "") {
+		return;
+	}
+	var iRet = WebVideoCtrl.I_Logout(szIP);
+	if (0 == iRet) {
+		// szInfo = "退出成功！";
+    console.log('退出成功')
+		// $("#ip option[value='" + szIP + "']").remove();
+		// getChannelInfo();
+	} else {
+		// szInfo = "退出失败！";
 	}
 }
 // 打开选择框 0：文件夹  1：文件
@@ -319,8 +351,8 @@ function clickStartRecord() {
   var oWndInfo = WebVideoCtrl.I_GetWindowStatus(g_iWndIndex)
   console.log(oWndInfo)
 	if (oWndInfo != null) {
-		var szFileName = oWndInfo.szIP + "_" + oWndInfo.iIndex + "_" + new Date().getTime(),
-			iRet = WebVideoCtrl.I_StartRecord(szFileName);
+		var szFileName = oWndInfo.szIP + "_" + oWndInfo.iIndex + "_" + new Date().getTime()
+		var	iRet = WebVideoCtrl.I_StartRecord(szFileName);
 		if (0 == iRet) {
 			console.log('开始录像成功')
 		} else {
@@ -343,19 +375,7 @@ function clickStopRecord() {
 // 设置本地参数
 function clickSetLocalCfg() {
 	var arrXml = []
-	arrXml.push("<LocalConfigInfo>");
-	arrXml.push("<PackgeSize>" + $("#packSize").val() + "</PackgeSize>");
-	arrXml.push("<PlayWndType>" + $("#wndSize").val() + "</PlayWndType>");
-	arrXml.push("<BuffNumberType>" + $("#netsPreach").val() + "</BuffNumberType>");
 	arrXml.push("<RecordPath>" + $("#recordPath").val() + "</RecordPath>");
-	arrXml.push("<CapturePath>" + $("#previewPicPath").val() + "</CapturePath>");
-	arrXml.push("<PlaybackFilePath>" + $("#playbackFilePath").val() + "</PlaybackFilePath>");
-	arrXml.push("<PlaybackPicPath>" + $("#playbackPicPath").val() + "</PlaybackPicPath>");
-	arrXml.push("<DownloadPath>" + $("#downloadPath").val() + "</DownloadPath>");
-	arrXml.push("<IVSMode>" + $("#rulesInfo").val() + "</IVSMode>");
-	arrXml.push("<CaptureFileFormat>" + $("#captureFileFormat").val() + "</CaptureFileFormat>");
-    arrXml.push("<ProtocolType>" + $("#protocolType").val() + "</ProtocolType>");
-	arrXml.push("</LocalConfigInfo>");
 	var iRet = WebVideoCtrl.I_SetLocalCfg(arrXml.join(""));
 	if (0 == iRet) {
     console.log('本地配置设置成功')
@@ -363,18 +383,10 @@ function clickSetLocalCfg() {
     console.log('本地配置设置失败')
 	}
 }
-
-// 获取时间
-function getDate() {
-  let time = new Date();
-  let year = time.getFullYear();
-  let month = time.getMonth() + 1;
-  let day = time.getDate();
-  month = month > 9 ? month : "0" + month;
-  day = day > 9 ? day : "0" + day;
-  let date = year + "-" + month + "-" + day;
-
-  $(".setDate").html(date);
+// 获取本地参数
+function clickGetLocalCfg() {
+	var xmlDoc = WebVideoCtrl.I_GetLocalCfg();
+	$("#recordPath").val($(xmlDoc).find("RecordPath").eq(0).text());
 }
 // 点击分组
 function clickGroups() {
@@ -419,8 +431,10 @@ function clickGroups() {
         flag = false
       } */
       if(item.id == id){
-        deviceObj = item
+        // deviceObj = item
         getOneVideo(item)
+        
+        // console.log('sssss'+ deviceListArray)
         // g_iWndIndex++
         
       }
@@ -439,16 +453,19 @@ function clickGroups() {
 
 // 设置分屏个数
 function screenFour(num){
-  iType = parseInt(num, 10);
-	WebVideoCtrl.I_ChangeWndNum(iType);
+  iWndowType = num
+  // iType = parseInt(num, 10);
+	WebVideoCtrl.I_ChangeWndNum(num);
 }
 function screenNine(num){
-  iType = parseInt(num, 10);
-	WebVideoCtrl.I_ChangeWndNum(iType);
+  iWndowType = num
+  // iType = parseInt(num, 10);
+	WebVideoCtrl.I_ChangeWndNum(num);
 }
 function screenSixteen(num){
-  iType = parseInt(num, 10);
-	WebVideoCtrl.I_ChangeWndNum(iType);
+  iWndowType = num
+  // iType = parseInt(num, 10);
+	WebVideoCtrl.I_ChangeWndNum(num);
 }
 // 全屏
 function clickFullScreen() {
@@ -462,7 +479,7 @@ function clickFullScreen() {
 // 查看所有摄像头的列表
 function getAllList() {
   $.ajax({
-    url: "http://120.77.224.76:10000/group/get/param",
+    url: baseURL + "group/get/param",
     success: function(res) {
       // console.log(res.groupList);
       var list = {

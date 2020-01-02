@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="../lib/bootstrap-validator/css/bootstrapValidator.min.css"> -->
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/deviceManage.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class="header_left">
+      <ul>
+        <li><a href="./workDesk.html">工作台</a> </li>
+        <li class="active"><a href="./deviceManage.html">设备管理</a></li>
+        <li><a href="./videoLive.html">实时视频</a></li>
+        <li><a href="./videoPlayBack.html">视频回放</a></li>
+        <li><a href="./gateWay.html">网关接入</a></li>
+        <li><a href="./admin.html">用户管理</a></li>
+      </ul>
+    </div>
+    <div class="header_right">
+      <span class="user">admin</span>
+      <span class="setDate"></span>
+      <span class="fa fa-minus" title="最小化"></span>
+      <span class="fa fa-window-maximize" title="最大化"></span>
+      <span class="fa fa-times" title="退出"></span>
+    </div>
+  </div>
+  <div class="main">
+    <div class="operate">
+      <div>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addGroup">添加分组</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addDevice">添加设备</button>
+        <button class="btn btn-primary" onclick="openModel()">删除设备</button>
+      </div>
+      <div>
+        <input type="search" oninput="searchByKeyWord()" id="searchByKeyWord" placeholder="请输入搜索内容"><i
+          class="fa fa-search" aria-hidden="true" onclick="searchByKeyWord()"></i>
+        <span class="totalNum">设备总数：</span>
+        <span class="totalOnline">在线总数：</span>
+      </div>
+    </div>
+    <p>所有设备</p>
+    <div class="device_list">
+      <div class="container-fluid">
+        <div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th><span><input type="checkbox"></span> <span>序号</span></th>
+                <th>名称</th>
+                <th>IP/域名</th>
+                <th>端口</th>
+                <th>通道数</th>
+                <th>在线状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
+        <nav>
+          <ul class="pagination">
+
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 添加分组 -->
+  <div class="modal fade bs-example-modal-sm" id="addGroup" tabindex="-1">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">添加分组</h4>
+        </div>
+        <div class="modal-body">
+          <form autocomplete="off">
+            <div class="form-group">
+              <label>名称</label>
+              <input type="text" class="form-control" id="groupsName" placeholder="请输入分组名称">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="addGroups()">添加</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 添加设备 -->
+  <div class="modal fade bs-example-modal-sm" id="addDevice" tabindex="-1">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">添加分组</h4>
+        </div>
+        <div class="modal-body">
+          <form autocomplete="off">
+            <div class="form-group">
+              <label>设备名称</label>
+              <input type="text" class="form-control" id="deviceName" placeholder="请输入设备名称">
+            </div>
+            <div class="form-group">
+              <label>添加方式</label>
+              <select class="form-control" id="addAddType">
+                <option value="0">IP/域名</option>
+                <option value="1">端口号</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>IP/域名</label>
+              <input type="text" class="form-control" id="addAddress">
+            </div>
+            <div class="form-group">
+              <label>端口号</label>
+              <input type="text" class="form-control" id="addPort">
+            </div>
+            <div class="form-group">
+              <label>组名</label>
+              <select class="form-control allGroups" id="addGroupId">
+                <!-- <option value="0">IP/域名</option> -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label>用户名</label>
+              <input type="text" class="form-control" id="addUsername">
+            </div>
+            <div class="form-group">
+              <label>密码</label>
+              <input type="password" class="form-control" id="addPassword">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary addDeviceSub">添加</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 修改设备 -->
+  <div class="modal fade bs-example-modal-sm" id="editDevice" tabindex="-1">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">修改设备</h4>
+        </div>
+        <div class="modal-body">
+          <form autocomplete="off">
+            <input type="hidden" name="id" id="editId">
+            <div class="form-group">
+              <label for="editName">设备名称</label>
+              <input type="text" class="form-control" id="editName" name="name" placeholder="请输入设备名称">
+            </div>
+            <div class="form-group">
+              <label>添加方式</label>
+              <select class="form-control" id="editAddType" name="addType">
+                <option value="0">IP</option>
+                <option value="1">域名</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="editAddress">IP/域名</label>
+              <input type="text" class="form-control" name="address" id="editAddress">
+            </div>
+            <div class="form-group">
+              <label for="editPort">端口号</label>
+              <input type="text" class="form-control" name="port" id="editPort">
+            </div>
+            <div class="form-group">
+              <label>组名</label>
+              <select class="form-control allGroups" id="editGroupId" name="groupId">
+                <!-- <option value="0">IP/域名</option> -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="editUsername">用户名</label>
+              <input type="text" class="form-control" name="username" id="editUsername">
+            </div>
+            <div class="form-group">
+              <label for="editPassword">密码</label>
+              <input type="password" class="form-control" name="password" id="editPassword">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary editDeviceSub">保存</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 删除提示模态框 -->
+  <div class="modal fade " tabindex="-1" id="delDevice">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content" style="width: 360px;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">确认删除</h4>
+        </div>
+        <div class="modal-body">
+          <p class="text-danger">提示：确认删除当前设备？</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="delDevice()">确认</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 列表数据渲染 -->
+  <script type='text/html' id="deviceList">
+    {{each list}}
+    <tr>
+      <td><span><input type="checkbox" data-id='{{$value.id}}'></span><span>{{$index + 1}}</span></td>
+      <td>{{$value.name}}</td>
+      <td>{{$value.address}}</td>
+      <td>{{$value.port}}</td>
+      <td>{{$value.channelNumber}}</td>
+      <td>{{$value.deviceStatus=='1' ? '在线' : '离线'}}</td>
+      <td>
+        <!-- <span data-id='{{$value.id}}' data-toggle="modal" data-target="#editDevice" onclick='getdeviceId(this)'>修改</span> -->
+        <span data-id='{{$value.id}}' onclick='getDeviceId(this)'>修改</span>
+        <span data-id='{{$value.id}}' data-toggle="modal" data-target="#delDevice" onclick='removeById(this)'>删除</span>
+      </td>
+    </tr>
+    {{ /each}}
+  </script>
+
+  <!-- 分组设局渲染 -->
+  <script type="text/html" id="groupsList">
+    {{ each list}}
+    <option value="{{$value.id}}">{{$value.name}}</option>
+    {{ /each}}
+  </script>
+
+  <script src="../lib/jquery1.10.2.js"></script>
+  <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+  <script src="../lib/template.js"></script>
+  <script src="../js/baseUrl.js"></script>
+  <script src="../js/deviceManage.js"></script>
+</body>
+
+</html>
